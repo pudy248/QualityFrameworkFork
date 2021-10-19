@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="XmlExtensions.OptionalPatch">
+		<modId>QualityExpanded</modId>
+		<key>resQuality</key>
+		<defaultValue>true</defaultValue>
+		<caseTrue>
+			<Operation Class="XmlExtensions.UseSettings">
+				<modId>QualityExpanded</modId>
+				<keys>
+					<li>awfulRes</li>
+					<li>poorRes</li>
+					<li>normalRes</li>
+					<li>goodRes</li>
+					<li>excRes</li>
+					<li>masterRes</li>
+					<li>legRes</li>
+				</keys>
+				<defaultValues>
+					<li>.6</li>
+					<li>.8</li>
+					<li>1</li>
+					<li>1.2</li>
+					<li>1.4</li>
+					<li>1.6</li>
+					<li>1.8</li>
+				</defaultValues>
+				<apply>
+				  <Operation Class="PatchOperationAdd">
+						<xpath>Defs/StatDef[defName="ResearchSpeedFactor"]/parts</xpath>
+						<value>
+							<li Class="StatPart_Quality">
+								<factorAwful>{awfulRes}</factorAwful>
+								<factorPoor>{poorRes}</factorPoor>
+								<factorNormal>1</factorNormal>
+								<factorGood>1.2</factorGood>
+								<factorExcellent>1.4</factorExcellent>
+								<factorMasterwork>1.6</factorMasterwork>
+								<factorLegendary>1.8</factorLegendary>
+							</li>
+						</value>			
+				  </Operation>					
+				</apply>			
+			</Operation>	
+		</caseTrue>
+	</Operation>
+</Patch>

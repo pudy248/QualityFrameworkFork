@@ -1,0 +1,4 @@
+P:\SteamLibrary\steamapps\common\RimWorld\Mods\QualityExpanded\1.3\Assemblies\QualityExpanded.dll
+P:\SteamLibrary\steamapps\common\RimWorld\Mods\QualityExpanded\Source\obj\Debug\QualityExpanded.csprojAssemblyReference.cache
+P:\SteamLibrary\steamapps\common\RimWorld\Mods\QualityExpanded\Source\obj\Debug\QualityExpanded.csproj.CoreCompileInputs.cache
+P:\SteamLibrary\steamapps\common\RimWorld\Mods\QualityExpanded\Source\obj\Debug\QualityExpanded.dll

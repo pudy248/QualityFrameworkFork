@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>XML Extensions</li>
+		</mods>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/StatDef[defName="ResearchSpeedFactor"]/parts</xpath>
+			<value>
+				<li Class="StatPart_Quality">
+					<factorAwful>.6</factorAwful>
+					<factorPoor>.8</factorPoor>
+					<factorNormal>1</factorNormal>
+					<factorGood>1.2</factorGood>
+					<factorExcellent>1.4</factorExcellent>
+					<factorMasterwork>1.6</factorMasterwork>
+					<factorLegendary>1.8</factorLegendary>
+				</li>
+			</value>
+		</nomatch>
+	</Operation>
+</Patch>
