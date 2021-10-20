@@ -1,22 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 	<Operation Class="PatchOperationFindMod">
-		<mods>
-			<li>XML Extensions</li>
-		</mods>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/StatDef[defName="ResearchSpeedFactor"]/parts</xpath>
-			<value>
-				<li Class="StatPart_Quality">
-					<factorAwful>.6</factorAwful>
-					<factorPoor>.8</factorPoor>
-					<factorNormal>1</factorNormal>
-					<factorGood>1.2</factorGood>
-					<factorExcellent>1.4</factorExcellent>
-					<factorMasterwork>1.6</factorMasterwork>
-					<factorLegendary>1.8</factorLegendary>
+		<mods><li>XML Extensions</li></mods>
+		<nomatch Class="PatchOperationSequence">
+			<success>Always</success>
+			<operations>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/StatDef[defName="ResearchSpeedFactor"]/parts</xpath>
+					<value>
+						<li Class="StatPart_Quality">
+							<factorAwful>.6</factorAwful>
+							<factorPoor>.8</factorPoor>
+							<factorNormal>1</factorNormal>
+							<factorGood>1.2</factorGood>
+							<factorExcellent>1.4</factorExcellent>
+							<factorMasterwork>1.6</factorMasterwork>
+							<factorLegendary>1.8</factorLegendary>
+						</li>
+					</value>
 				</li>
-			</value>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/StatDef[defName="WorkTableWorkSpeedFactor"]/parts</xpath>
+					<value>
+						<li Class="StatPart_Quality">
+							<factorAwful>.6</factorAwful>
+							<factorPoor>.8</factorPoor>
+							<factorNormal>1</factorNormal>
+							<factorGood>1.2</factorGood>
+							<factorExcellent>1.4</factorExcellent>
+							<factorMasterwork>1.6</factorMasterwork>
+							<factorLegendary>1.8</factorLegendary>
+						</li>
+					</value>
+				</li>		
+				<li Class="PatchOperationFindMod">
+					<mods><li>Quality Doors</li></mods>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/StatDef[defName="DoorOpenSpeed"]</xpath>
+						<value>
+							<parts>
+								<li Class="StatPart_Quality">
+									<factorAwful>.8</factorAwful>
+									<factorPoor>.9</factorPoor>
+									<factorNormal>1</factorNormal>
+									<factorGood>1.1</factorGood>
+									<factorExcellent>1.2</factorExcellent>
+									<factorMasterwork>1.3</factorMasterwork>
+									<factorLegendary>1.4</factorLegendary>
+								</li>
+							</parts>
+						</value>						
+					</nomatch>			
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/StatDef[defName="ShootingAccuracyTurret"]</xpath>
+					<value>
+						<parts>
+							<li Class="StatPart_Quality">
+								<factorAwful>.8</factorAwful>
+								<factorPoor>.9</factorPoor>
+								<factorNormal>1</factorNormal>
+								<factorGood>1.1</factorGood>
+								<factorExcellent>1.2</factorExcellent>
+								<factorMasterwork>1.3</factorMasterwork>
+								<factorLegendary>1.4</factorLegendary>
+							</li>
+						</parts>
+					</value>
+				</li>
+			</operations>
 		</nomatch>
 	</Operation>
 </Patch>
