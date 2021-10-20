@@ -11,7 +11,9 @@ using UnityEngine;
 namespace QualityExpanded 
 {
     public class Settings_QE : ModSettings
-    { 
+    {
+        public static bool qualDetiorates = true;
+
         //Hit Points
         public static bool hitQuality = true;
         public static float awfulHit = .5f;
@@ -42,8 +44,20 @@ namespace QualityExpanded
         public static float masterWork = 1.6f;
         public static float legWork = 1.8f;
 
+        //Door Open Speed
+        public static bool doorQuality = true;
+        public static float awfulDoor = .8f;
+        public static float poorDoor = .9f;
+        public static float normalDoor = 1f;
+        public static float goodDoor = 1.1f;
+        public static float excDoor = 1.2f;
+        public static float masterDoor = 1.3f;
+        public static float legDoor = 1.4f;
+
         public override void ExposeData()
         {
+            Scribe_Values.Look<bool>(ref qualDetiorates, "qualDetiorates", true);
+
             //Hit Points
             Scribe_Values.Look<bool>(ref hitQuality, "hitQuality", true);
             Scribe_Values.Look<float>(ref awfulHit, "awfulHit", .5f);
@@ -73,6 +87,16 @@ namespace QualityExpanded
             Scribe_Values.Look<float>(ref excWork, "excWork", 1.5f);
             Scribe_Values.Look<float>(ref masterWork, "masterWork", 1.75f);
             Scribe_Values.Look<float>(ref legWork, "legWork", 2f);
+
+            //Door Open Speed
+            Scribe_Values.Look<bool>(ref doorQuality, "doorQuality", true);
+            Scribe_Values.Look<float>(ref awfulDoor, "awfulDoor", .5f);
+            Scribe_Values.Look<float>(ref poorDoor, "poorDoor", .75f);
+            Scribe_Values.Look<float>(ref normalDoor, "normalDoor", 1f);
+            Scribe_Values.Look<float>(ref goodDoor, "goodDoor", 1.25f);
+            Scribe_Values.Look<float>(ref excDoor, "excDoor", 1.5f);
+            Scribe_Values.Look<float>(ref masterDoor, "masterDoor", 1.75f);
+            Scribe_Values.Look<float>(ref legDoor, "legDoor", 2f);
         }
     }
 }

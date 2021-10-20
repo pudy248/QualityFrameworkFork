@@ -29,8 +29,7 @@ namespace QualityExpanded
             
             //Hit Points
             listing.CheckboxLabeled("Quality affects max hit points:", ref Settings_QE.hitQuality);
-            if (ModLister.HasActiveModWithName("XML Extensions"))
-            {
+            Text.Anchor = TextAnchor.MiddleLeft;
                 string awfulHit = Settings_QE.awfulHit.ToString();
                 Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), awful, ref Settings_QE.awfulHit, ref awfulHit, .05f, .5f, 0f, 10f);
                 string poorHit = Settings_QE.poorHit.ToString();
@@ -45,13 +44,6 @@ namespace QualityExpanded
                 Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), master, ref Settings_QE.masterHit, ref masterHit, .05f, .5f, 0f, 10f);
                 string legHit = Settings_QE.legHit.ToString();
                 Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), legendary, ref Settings_QE.legHit, ref legHit, .05f, .5f, 0f, 10f);
-            }
-            else
-            {
-                listing.Gap(72f);
-                listing.Label("Requires XML Extensions for Configuration");
-                listing.Gap(72f);
-            }
             listing.GapLine(6f);
 
             //Research Speed
@@ -77,7 +69,9 @@ namespace QualityExpanded
             else
             {
                 listing.Gap(72f);
-                listing.Label("Requires XML Extensions for Configuration");
+                Text.Anchor = TextAnchor.MiddleCenter;
+                listing.Label("Requires XML Extensions");
+                Text.Anchor = TextAnchor.UpperLeft;
                 listing.Gap(72f);
             }
             listing.GapLine(6f);
@@ -105,10 +99,38 @@ namespace QualityExpanded
             else
             {
                 listing.Gap(72f);
-                listing.Label("Requires XML Extensions for Configuration");
+                Text.Anchor = TextAnchor.MiddleCenter;
+                listing.Label("Requires XML Extensions");
+                Text.Anchor = TextAnchor.UpperLeft;
                 listing.Gap(72f);
             }
             listing.GapLine(6f);
+
+            listing.CheckboxLabeled("Quality affects door open speed:", ref Settings_QE.doorQuality);
+            //if (ModLister.HasActiveModWithName("XML Extensions"))
+            //{
+                //string awfulDoor = Settings_QE.awfulDoor.ToString();
+                Settings_QE.awfulDoor = (int)(Widgets.HorizontalSlider(listing.GetRect(30f), Settings_QE.awfulDoor, .1f, 4f, false, null, "Awful Factor", Settings_QE.awfulDoor.ToString()) * 100) / 100f;
+                Settings_QE.poorDoor = (int)(Widgets.HorizontalSlider(listing.GetRect(30f), Settings_QE.poorDoor, .1f, 4f, false, null, "Poor Factor", Settings_QE.poorDoor.ToString()) * 100) / 100f;
+                Settings_QE.normalDoor = (int)(Widgets.HorizontalSlider(listing.GetRect(30f), Settings_QE.normalDoor, .1f, 4f, false, null, "Normal Factor", Settings_QE.normalDoor.ToString()) * 100) / 100f;
+            //Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), awful, ref Settings_QE.awfulDoor, ref awfulDoor, .05f, .5f, 0f, 10f);
+                /*string poorDoor = Settings_QE.poorDoor.ToString();
+                //Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), poor, ref Settings_QE.poorDoor, ref poorDoor, .05f, .5f, 0f, 10f);
+                string normDoor = Settings_QE.normalDoor.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), normal, ref Settings_QE.normalDoor, ref normDoor, .05f, .5f, 0f, 10f);
+                string goodDoor = Settings_QE.goodDoor.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), good, ref Settings_QE.goodDoor, ref goodDoor, .05f, .5f, 0f, 10f);
+                string excDoor = Settings_QE.excDoor.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), excellent, ref Settings_QE.excDoor, ref excDoor, .05f, .5f, 0f, 10f);
+                string masterDoor = Settings_QE.masterDoor.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), master, ref Settings_QE.masterDoor, ref masterDoor, .05f, .5f, 0f, 10f);
+                string legDoor = Settings_QE.legDoor.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), legendary, ref Settings_QE.legDoor, ref legDoor, .05f, .5f, 0f, 10f);*/
+           //}
+            
+
+
+
         }
     }
 }

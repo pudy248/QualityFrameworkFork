@@ -12,28 +12,28 @@ namespace QualityExpanded
         [HarmonyPostfix]
         public static void BuildingQualityLoss_Damaged(Building b)
         {
-            CheckQualityLoss(b);
+            if (Settings_QE.qualDetiorates) CheckQualityLoss(b);
         }
 
         [HarmonyPatch(typeof(ListerBuildingsRepairable), "Notify_BuildingSpawned")]
         [HarmonyPostfix]
         public static void BuildingQualityLoss_Spawned(Building b)
         {
-            CheckQualityLoss(b);
+            if (Settings_QE.qualDetiorates) CheckQualityLoss(b);
         }
 
         [HarmonyPatch(typeof(Pawn_ApparelTracker), "TakeWearoutDamageForDay")]
         [HarmonyPostfix]
         public static void ApparelQualityLoss_Daily(Thing ap)
         {
-            CheckQualityLoss(ap);
+            if (Settings_QE.qualDetiorates) CheckQualityLoss(ap);
         }
 
         [HarmonyPatch(typeof(Pawn_ApparelTracker), "Notify_ApparelAdded")]
         [HarmonyPostfix]
         public static void ApparelQualityLoss_Added(Thing apparel)
         {
-            CheckQualityLoss(apparel);
+            if (Settings_QE.qualDetiorates) CheckQualityLoss(apparel);
         }
 
 
@@ -41,35 +41,35 @@ namespace QualityExpanded
         [HarmonyPostfix]
         public static void ApparelQualityLoss_Removed(Thing apparel)
         {
-            CheckQualityLoss(apparel);
+            if (Settings_QE.qualDetiorates) CheckQualityLoss(apparel);
         }
 
         [HarmonyPatch(typeof(ArmorUtility), "ApplyArmor")]
         [HarmonyPostfix]
         public static void ArmorQualityLoss_Absorbed(Thing armorThing)
         {
-            if (armorThing != null) CheckQualityLoss(armorThing);
+            if (Settings_QE.qualDetiorates && armorThing != null) CheckQualityLoss(armorThing);
         }
 
         [HarmonyPatch(typeof(Pawn_EquipmentTracker), "Notify_EquipmentRemoved")]
         [HarmonyPostfix]
         public static void EquipmentQualityLoss_Unequip(ThingWithComps eq)
         {
-            CheckQualityLoss(eq);
+            if (Settings_QE.qualDetiorates) CheckQualityLoss(eq);
         }
 
         [HarmonyPatch(typeof(Pawn_EquipmentTracker), "Notify_EquipmentAdded")]
         [HarmonyPostfix]
         public static void EquipmentQualityLoss_Equip(ThingWithComps eq)
         {
-            CheckQualityLoss(eq);
+            if (Settings_QE.qualDetiorates) CheckQualityLoss(eq);
         }
 
         [HarmonyPatch(typeof(CompMaintainable), "CheckTakeDamage")]
         [HarmonyPostfix]
         public static void MaintableQualityLoss_Damaged(CompMaintainable __instance)
         {
-            if (__instance.CurStage == MaintainableStage.Damaging) CheckQualityLoss(__instance.parent);
+            if (Settings_QE.qualDetiorates && __instance.CurStage == MaintainableStage.Damaging) CheckQualityLoss(__instance.parent);
         }
 
         public static void CheckQualityLoss(Thing thing)
@@ -86,7 +86,7 @@ namespace QualityExpanded
                 num += quality - 4;
                 quality = 4;
             }
-            float factor = Quality_HitPoints.GetQualityFactor((QualityCategory)(quality - 1)); Log.Message("Chance is " + ((float)(1f - thing.HitPoints / (thing.MaxHitPoints * factor)) / num).ToString());
+            float factor = Quality_HitPoints.GetQualityFactor((QualityCategory)(quality - 1)); //Log.Message("Chance is " + ((float)(1f - thing.HitPoints / (thing.MaxHitPoints * factor)) / num).ToString());
             if (Rand.Value < (1f - thing.HitPoints / (thing.MaxHitPoints * factor)) / num)
             {
                 comp.SetQuality((QualityCategory)(quality - 1), ArtGenerationContext.Colony); Log.Message("Lost quality");

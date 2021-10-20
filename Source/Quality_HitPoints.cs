@@ -20,7 +20,7 @@ namespace QualityExpanded
             CompQuality comp = __instance.TryGetComp<CompQuality>();
             if (comp != null)
             {
-                //return Mathf.RoundToInt(__result * GetQualityFactor(comp.Quality));
+                return Mathf.RoundToInt(__result * GetQualityFactor(comp.Quality));
             }
             return __result;
         }
