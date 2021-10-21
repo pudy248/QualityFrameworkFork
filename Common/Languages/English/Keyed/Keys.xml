@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<LanguageData>
+	<QExpanded.Tab0>Hit Points</QExpanded.Tab0>
+	<QExpanded.Tab1>Building Quality</QExpanded.Tab1>
+	<QExpanded.Tab2>Indiv. Buildings</QExpanded.Tab2>
+	<QExpanded.Tab3>Indiv. Weap &amp; Apparel</QExpanded.Tab3>
+	<QExpanded.Tab4>Indiv. Other</QExpanded.Tab4>
+
+	<QExpanded.BldgHit>Building quality affects hit points.</QExpanded.BldgHit>
+	<QExpanded.WeapHit>Weapon quality affects hit points.</QExpanded.WeapHit>
+	<QExpanded.AppHit>Apparel quality affects hit points.</QExpanded.AppHit>
+	<QExpanded.OtherHit>Other item quality affects hit points.</QExpanded.OtherHit>
+
+	<QExpanded.BldgDeteriorates>Building quality deteriorates.</QExpanded.BldgDeteriorates>
+	<QExpanded.WeapDeteriorates>Weapon quality deteriorates.</QExpanded.WeapDeteriorates>
+	<QExpanded.AppDeteriorates>Apparel quality deteriorates.</QExpanded.AppDeteriorates>
+
+</LanguageData>
