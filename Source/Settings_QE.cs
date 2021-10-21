@@ -12,10 +12,22 @@ namespace QualityExpanded
 {
     public class Settings_QE : ModSettings
     {
-        public static bool qualDetiorates = true;
-
         //Hit Points
-        public static bool hitQuality = true;
+        public static bool bldgHitQual = true;
+        public static bool weapHitQual = true;
+        public static bool appHitQual = true;
+        public static bool stuffHitQual = true;
+        public static bool ingHitQual = true;
+        public static bool otherHitQual = true;
+
+        public static bool bldgDeteriorates = true;
+        public static bool weapDeteriorates = true;
+        public static bool appDeteriorates = true;
+        public static bool stuffDeteriorates = true;
+        public static bool ingDeteriorates = true;
+        public static bool ing2Deteriorates = true;
+        public static bool otherDeteriorates = true;
+
         public static float awfulHit = .5f;
         public static float poorHit = .75f;
         public static float normalHit = 1f;
@@ -56,10 +68,21 @@ namespace QualityExpanded
 
         public override void ExposeData()
         {
-            Scribe_Values.Look<bool>(ref qualDetiorates, "qualDetiorates", true);
-
             //Hit Points
-            Scribe_Values.Look<bool>(ref hitQuality, "hitQuality", true);
+            Scribe_Values.Look<bool>(ref bldgHitQual, "bldgHitQual", true);
+            Scribe_Values.Look<bool>(ref weapHitQual, "weapHitQual", true);
+            Scribe_Values.Look<bool>(ref appHitQual, "appHitQual", true);
+            Scribe_Values.Look<bool>(ref stuffHitQual, "stuffHitQual", true);
+            Scribe_Values.Look<bool>(ref ingHitQual, "ingHitQual", true);
+            Scribe_Values.Look<bool>(ref otherHitQual, "otherHitQual", true);
+            Scribe_Values.Look<bool>(ref bldgDeteriorates, "bldgDeteriorates", true);
+            Scribe_Values.Look<bool>(ref weapDeteriorates, "weapDeteriorates", true);
+            Scribe_Values.Look<bool>(ref appDeteriorates, "appDeteriorates", true);
+            Scribe_Values.Look<bool>(ref stuffDeteriorates, "stuffDeteriorates", true);
+            Scribe_Values.Look<bool>(ref ingDeteriorates, "ingDeteriorates", true);
+            Scribe_Values.Look<bool>(ref ing2Deteriorates, "ing2Deteriorates", true);
+            Scribe_Values.Look<bool>(ref otherDeteriorates, "otherDeteriorates", true);
+
             Scribe_Values.Look<float>(ref awfulHit, "awfulHit", .5f);
             Scribe_Values.Look<float>(ref poorHit, "poorHit", .75f);
             Scribe_Values.Look<float>(ref normalHit, "normalHit", 1f);
@@ -97,6 +120,11 @@ namespace QualityExpanded
             Scribe_Values.Look<float>(ref excDoor, "excDoor", 1.5f);
             Scribe_Values.Look<float>(ref masterDoor, "masterDoor", 1.75f);
             Scribe_Values.Look<float>(ref legDoor, "legDoor", 2f);
+        }
+
+        public static void ResetDefaults()
+        {
+
         }
     }
 }

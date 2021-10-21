@@ -12,64 +12,50 @@ namespace QualityExpanded
         [HarmonyPostfix]
         public static void BuildingQualityLoss_Damaged(Building b)
         {
-            if (Settings_QE.qualDetiorates) CheckQualityLoss(b);
+            if (Settings_QE.bldgDeteriorates) CheckQualityLoss(b);
         }
 
         [HarmonyPatch(typeof(ListerBuildingsRepairable), "Notify_BuildingSpawned")]
         [HarmonyPostfix]
         public static void BuildingQualityLoss_Spawned(Building b)
         {
-            if (Settings_QE.qualDetiorates) CheckQualityLoss(b);
+            if (Settings_QE.bldgDeteriorates) CheckQualityLoss(b);
         }
 
         [HarmonyPatch(typeof(Pawn_ApparelTracker), "TakeWearoutDamageForDay")]
         [HarmonyPostfix]
         public static void ApparelQualityLoss_Daily(Thing ap)
         {
-            if (Settings_QE.qualDetiorates) CheckQualityLoss(ap);
+            if (Settings_QE.appDeteriorates) CheckQualityLoss(ap);
         }
 
-        [HarmonyPatch(typeof(Pawn_ApparelTracker), "Notify_ApparelAdded")]
+        [HarmonyPatch(typeof(Pawn_ApparelTracker), "Notify_ApparelChanged")]
         [HarmonyPostfix]
-        public static void ApparelQualityLoss_Added(Thing apparel)
+        public static void ApparelQualityLoss_Changed(Thing apparel)
         {
-            if (Settings_QE.qualDetiorates) CheckQualityLoss(apparel);
-        }
-
-
-        [HarmonyPatch(typeof(Pawn_ApparelTracker), "Notify_ApparelRemoved")]
-        [HarmonyPostfix]
-        public static void ApparelQualityLoss_Removed(Thing apparel)
-        {
-            if (Settings_QE.qualDetiorates) CheckQualityLoss(apparel);
+            if (Settings_QE.appDeteriorates) CheckQualityLoss(apparel);
         }
 
         [HarmonyPatch(typeof(ArmorUtility), "ApplyArmor")]
         [HarmonyPostfix]
         public static void ArmorQualityLoss_Absorbed(Thing armorThing)
         {
-            if (Settings_QE.qualDetiorates && armorThing != null) CheckQualityLoss(armorThing);
+            if (Settings_QE.appDeteriorates && armorThing != null) CheckQualityLoss(armorThing);
         }
 
         [HarmonyPatch(typeof(Pawn_EquipmentTracker), "Notify_EquipmentRemoved")]
         [HarmonyPostfix]
         public static void EquipmentQualityLoss_Unequip(ThingWithComps eq)
         {
-            if (Settings_QE.qualDetiorates) CheckQualityLoss(eq);
+            if (Settings_QE.weapDeteriorates) CheckQualityLoss(eq);
         }
 
         [HarmonyPatch(typeof(Pawn_EquipmentTracker), "Notify_EquipmentAdded")]
         [HarmonyPostfix]
         public static void EquipmentQualityLoss_Equip(ThingWithComps eq)
         {
-            if (Settings_QE.qualDetiorates) CheckQualityLoss(eq);
-        }
-
-        [HarmonyPatch(typeof(CompMaintainable), "CheckTakeDamage")]
-        [HarmonyPostfix]
-        public static void MaintableQualityLoss_Damaged(CompMaintainable __instance)
-        {
-            if (Settings_QE.qualDetiorates && __instance.CurStage == MaintainableStage.Damaging) CheckQualityLoss(__instance.parent);
+            if (Settings_QE.weapDeteriorates) CheckQualityLoss(eq);
+            Log.Message(eq.Label + " added to equipment");
         }
 
         public static void CheckQualityLoss(Thing thing)

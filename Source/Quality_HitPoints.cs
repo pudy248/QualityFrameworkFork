@@ -15,14 +15,35 @@ namespace QualityExpanded
     {
         [HarmonyPatch(typeof(Thing), "MaxHitPoints", MethodType.Getter)]
         [HarmonyPostfix]
-        public static int AdjustMaxHitPoints(int __result, Thing __instance)
+        public static void AdjustMaxHitPoints(ref int __result, Thing __instance)
         {
+            if (__instance.def.building != null)
+            {
+                if (!Settings_QE.bldgHitQual) return;
+            }
+            else if (__instance.def.IsStuff)
+            {
+                if (!Settings_QE.stuffHitQual) return;
+            }
+            else if (__instance.def.IsIngestible)
+            {
+                if (!Settings_QE.ingHitQual) return;
+            }
+            else if (__instance.def.IsWeapon)
+            {
+                if (!Settings_QE.weapHitQual) return;
+            }
+            else if (__instance.def.IsApparel)
+            {
+                if (!Settings_QE.appHitQual) return;
+            }
+            else if (!Settings_QE.otherHitQual) return;
             CompQuality comp = __instance.TryGetComp<CompQuality>();
             if (comp != null)
             {
-                return Mathf.RoundToInt(__result * GetQualityFactor(comp.Quality));
+                __result = Mathf.RoundToInt(__result * GetQualityFactor(comp.Quality));
             }
-            return __result;
+            return;
         }
 
         [HarmonyPatch(typeof(CompQuality), "SetQuality")]
