@@ -20,7 +20,7 @@ namespace QualityExpanded
 
         public static void DoHitPoints(Listing_Standard listing, Rect canvas)
         {
-            Rect rect = new Rect(canvas.x + 5f, canvas.y + 5f, canvas.width - 10f, 168f);
+            Rect rect = new Rect(canvas.x + 5f, canvas.y + 5f, canvas.width - 10f, 192f);
             listing.Begin(rect);
             listing.ColumnWidth = rect.width / 2 - 12f;
             Text.Anchor = TextAnchor.MiddleLeft;
@@ -29,7 +29,7 @@ namespace QualityExpanded
             listing.CheckboxLabeled("QExpanded.AppHit".Translate(), ref Settings_QE.appHitQual);
             listing.CheckboxLabeled("QExpanded.StuffHit".Translate(), ref Settings_QE.stuffHitQual);
             listing.CheckboxLabeled("QExpanded.IngHit".Translate(), ref Settings_QE.ingHitQual);
-            listing.Gap(24f);
+            if (Settings_QE.ingHitQual) listing.Gap(24f);
             listing.CheckboxLabeled("QExpanded.OtherHit".Translate(), ref Settings_QE.otherHitQual);
             listing.NewColumn();
             if (Settings_QE.bldgHitQual) 
@@ -44,10 +44,16 @@ namespace QualityExpanded
                 listing.CheckboxLabeled("QExpanded.AppDeteriorates".Translate(), ref Settings_QE.appDeteriorates);
             else 
                 listing.Gap(24f);
+            if (Settings_QE.stuffHitQual)
+            {
+                listing.CheckboxLabeled("QExpanded.StuffDeteriorates".Translate(), ref Settings_QE.stuffDeteriorates);
+            }
+            else
+                listing.Gap(24f);
             if (Settings_QE.ingHitQual)
             {
                 listing.CheckboxLabeled("QExpanded.IngDeteriorates".Translate(), ref Settings_QE.ingDeteriorates);
-                listing.CheckboxLabeled("QExpanded.Ing2Det".Translate(), ref Settings_QE.ing2Deteriorates);
+                listing.CheckboxLabeled("QExpanded.IngDet2".Translate(), ref Settings_QE.ing2Deteriorates);
             }
             else
                 listing.Gap(24f);
@@ -57,16 +63,16 @@ namespace QualityExpanded
                 listing.Gap(24f);
             listing.End();
 
-            listing.Begin(new Rect(canvas.x + 5f, canvas.y + 120f, canvas.width - 10f, 10f));
+            listing.Begin(new Rect(canvas.x + 5f, canvas.y + 172f, canvas.width - 10f, 10f));
             listing.ColumnWidth = canvas.width - 10f;
             listing.GapLine(10f);
             listing.End();
 
-            listing.Begin(new Rect(canvas.x + 5f, canvas.y + 130f, canvas.width - 10f, canvas.height - 36f));
+            listing.Begin(new Rect(canvas.x + 5f, canvas.y + 182f, canvas.width - 10f, canvas.height - 36f));
             listing.ColumnWidth = rect.width / 3 - 10f;
 
             //Hit Points
-            listing.Label("Hit Point Factors:");
+            listing.Label("QExpanded.HitFactors".Translate());
             Text.Anchor = TextAnchor.MiddleLeft;
             string awfulHit = Settings_QE.awfulHit.ToString();
             Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), awful, ref Settings_QE.awfulHit, ref awfulHit, .05f, .5f, .05f, 10f);
@@ -86,11 +92,10 @@ namespace QualityExpanded
             listing.End();
         }
 
-        
         public static void DoBldg(Listing_Standard listing, Rect rect)
         {
             //Research Speed
-            listing.CheckboxLabeled("Quality affects research speed:", ref Settings_QE.resQuality);
+            listing.CheckboxLabeled("QExpanded.ResSpeed".Translate(), ref Settings_QE.resQuality);
             if (ModLister.HasActiveModWithName("XML Extensions"))
             {
                 string awfulRes = Settings_QE.awfulRes.ToString();
@@ -120,7 +125,7 @@ namespace QualityExpanded
 
             //Work Table Speed
             listing.NewColumn();
-            listing.CheckboxLabeled("Quality affects work speed:", ref Settings_QE.workQuality);
+            listing.CheckboxLabeled("QExpanded.WorkSpeed".Translate(), ref Settings_QE.workQuality);
             if (ModLister.HasActiveModWithName("XML Extensions"))
             {
                 string awfulWork = Settings_QE.awfulWork.ToString();
@@ -149,7 +154,7 @@ namespace QualityExpanded
             listing.GapLine(6f);
 
             listing.NewColumn();
-            listing.CheckboxLabeled("Quality affects door open speed:", ref Settings_QE.doorQuality);
+            listing.CheckboxLabeled("QExpanded.DoorSpeed".Translate(), ref Settings_QE.doorQuality);
             if (ModLister.HasActiveModWithName("XML Extensions"))
             {
                 string awfulDoor = Settings_QE.awfulDoor.ToString();

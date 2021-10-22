@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using System.Collections.Generic;
+using RimWorld;
 using UnityEngine;
 using Verse;
 using HarmonyLib;
@@ -6,8 +7,86 @@ using HarmonyLib;
 namespace QualityExpanded
 {
     [HarmonyPatch]
-    public class QualityLoss
+    public class QualityLoss : MapComponent
     {
+        public int lastQualityLossTick = -1;
+        public bool qualFramework = false;
+
+        public QualityLoss(Map map) : base(map)
+        {
+        }
+
+        public override void MapComponentTick()
+        {
+            int ticksGame = Find.TickManager.TicksGame;
+            if (lastQualityLossTick < 0)
+            {
+                lastQualityLossTick = ticksGame;
+            }
+            int curTicks = ticksGame - lastQualityLossTick;
+            if (curTicks >= 60000)
+            {
+                lastQualityLossTick = ticksGame;
+                if (Settings_QE.weapHitQual && Settings_QE.weapDeteriorates)
+                {
+                    CheckWeapons();
+                }
+                if (Settings_QE.otherDeteriorates && qualFramework)
+                {
+                    CheckOther();
+                }
+            }
+        }
+
+        public void CheckWeapons()
+        {
+            Thing thing;
+            List<Pawn> colonists = map.mapPawns.FreeColonistsSpawned;
+            if (colonists != null)
+            {
+                for (int i = 0; i < colonists.Count; i++)
+                {
+                    Pawn_EquipmentTracker eq = colonists[i].equipment;
+                    if (eq != null && eq.HasAnything())
+                    {
+                        for (int j = 0; j < eq.AllEquipmentListForReading.Count; j++)
+                        {
+                            thing = eq.AllEquipmentListForReading[j];
+                            if (!thing.def.IsIngestible && !thing.def.IsStuff)
+                            {
+                                CheckQualityLoss(thing);
+                            }
+                        }
+                    }
+                }
+            }
+            List<Thing> weapons = map.listerThings.ThingsInGroup(ThingRequestGroup.Weapon);
+            if (weapons != null)
+            {
+                for (int j = 0; j < weapons.Count; j++)
+                {
+                    thing = weapons[j];
+                    if (!thing.def.IsIngestible && !thing.def.IsStuff)
+                    {
+                        CheckQualityLoss(thing);
+                    }
+                }
+            }
+        }
+
+        public void CheckOther()
+        {
+            Thing thing;
+            List<Thing> things = map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways);
+            for (int i = 0; i < things.Count; i++)
+            {
+                thing = things[i];
+                if (thing.def.IsStuff && Settings_QE.stuffHitQual) CheckQualityLoss(thing);
+                else if (thing.def.IsIngestible && Settings_QE.ingHitQual) CheckQualityLoss(thing);
+                else if (thing.def.building == null && !thing.def.IsWeapon && !thing.def.IsApparel) CheckQualityLoss(thing);
+            }
+        }
+
         [HarmonyPatch(typeof(ListerBuildingsRepairable), "Notify_BuildingTookDamage")]
         [HarmonyPostfix]
         public static void BuildingQualityLoss_Damaged(Building b)
@@ -29,33 +108,11 @@ namespace QualityExpanded
             if (Settings_QE.appDeteriorates) CheckQualityLoss(ap);
         }
 
-        [HarmonyPatch(typeof(Pawn_ApparelTracker), "Notify_ApparelChanged")]
-        [HarmonyPostfix]
-        public static void ApparelQualityLoss_Changed(Thing apparel)
-        {
-            if (Settings_QE.appDeteriorates) CheckQualityLoss(apparel);
-        }
-
         [HarmonyPatch(typeof(ArmorUtility), "ApplyArmor")]
         [HarmonyPostfix]
         public static void ArmorQualityLoss_Absorbed(Thing armorThing)
         {
             if (Settings_QE.appDeteriorates && armorThing != null) CheckQualityLoss(armorThing);
-        }
-
-        [HarmonyPatch(typeof(Pawn_EquipmentTracker), "Notify_EquipmentRemoved")]
-        [HarmonyPostfix]
-        public static void EquipmentQualityLoss_Unequip(ThingWithComps eq)
-        {
-            if (Settings_QE.weapDeteriorates) CheckQualityLoss(eq);
-        }
-
-        [HarmonyPatch(typeof(Pawn_EquipmentTracker), "Notify_EquipmentAdded")]
-        [HarmonyPostfix]
-        public static void EquipmentQualityLoss_Equip(ThingWithComps eq)
-        {
-            if (Settings_QE.weapDeteriorates) CheckQualityLoss(eq);
-            Log.Message(eq.Label + " added to equipment");
         }
 
         public static void CheckQualityLoss(Thing thing)

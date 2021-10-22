@@ -10,10 +10,16 @@
 	<QExpanded.BldgHit>Building quality affects hit points.</QExpanded.BldgHit>
 	<QExpanded.WeapHit>Weapon quality affects hit points.</QExpanded.WeapHit>
 	<QExpanded.AppHit>Apparel quality affects hit points.</QExpanded.AppHit>
+	<QExpanded.StuffHit>Stuff quality affects hit points</QExpanded.StuffHit>
+	<QExpanded.IngHit>Ingredient quality affects hit points</QExpanded.IngHit>
 	<QExpanded.OtherHit>Other item quality affects hit points.</QExpanded.OtherHit>
 
 	<QExpanded.BldgDeteriorates>Building quality deteriorates.</QExpanded.BldgDeteriorates>
 	<QExpanded.WeapDeteriorates>Weapon quality deteriorates.</QExpanded.WeapDeteriorates>
 	<QExpanded.AppDeteriorates>Apparel quality deteriorates.</QExpanded.AppDeteriorates>
+	<QExpanded.StuffDeteriorates>Stuff quality deteriorates.</QExpanded.StuffDeteriorates>
+	<QExpanded.IngDeteriorates>Ingredient quality deteriorates when rotting.</QExpanded.IngDeteriorates>
+	<QExpanded.IngDet2>Ingredient quality deterioraes when frozen.</QExpanded.IngDet2>
+	<QExpanded.OtherDeteriorates>Other item quality deteriorates.</QExpanded.OtherDeteriorates>
 
 </LanguageData>
