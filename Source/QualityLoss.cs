@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using RimWorld;
-using UnityEngine;
 using Verse;
 using HarmonyLib;
 
@@ -129,7 +128,7 @@ namespace QualityExpanded
          
         public static void CheckQualityLoss(Thing thing)
         {
-            CompQuality comp = thing.TryGetComp<CompQuality>(); Log.Message("Checking for quality loss for " + thing.Label);
+            CompQuality comp = thing.TryGetComp<CompQuality>(); //Log.Message("Checking for quality loss for " + thing.Label);
             if (comp == null) 
                 return;
             int quality = (int)comp.Quality;
@@ -142,10 +141,10 @@ namespace QualityExpanded
                 num += quality - 4;
                 quality = 4;
             }
-            float factor = Quality_HitPoints.GetQualityFactor((QualityCategory)(quality - 1)); Log.Message("Chance is " + ((1f - (float)thing.HitPoints / thing.MaxHitPoints) / num).ToString());
+            float factor = Quality_HitPoints.GetQualityFactor((QualityCategory)(quality - 1)); //Log.Message("Chance is " + ((1f - (float)thing.HitPoints / thing.MaxHitPoints) / num).ToString());
             if (curHit < (thing.def.GetStatValueAbstract(StatDefOf.MaxHitPoints, thing.Stuff) * factor) && Rand.Value < (1f - (float)curHit / thing.MaxHitPoints) / num)
             {
-                comp.SetQuality((QualityCategory)(quality - 1), ArtGenerationContext.Colony); Log.Message("Lost quality");
+                comp.SetQuality((QualityCategory)(quality - 1), ArtGenerationContext.Colony); //Log.Message("Lost quality");
                 if (curHit < thing.MaxHitPoints) thing.HitPoints = curHit;
             }
         }
