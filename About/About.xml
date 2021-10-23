@@ -14,7 +14,11 @@
 			<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
 		</li>
   </modDependencies>
-  <description>(Almost) everything has quality.
+  <loadAfter>
+	<li>imranfish.xmlextensions</li>
+	<li>SteveZero.QualityDoors</li>
+  </loadAfter>
+  <description>Provides various configurable options for increasing the impact of quality.
   </description>
 </ModMetaData>
 

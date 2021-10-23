@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <LanguageData>
-	<QExpanded.Tab0>Hit Points</QExpanded.Tab0>
-	<QExpanded.Tab1>Building Quality</QExpanded.Tab1>
-	<QExpanded.Tab2>Indiv. Buildings</QExpanded.Tab2>
-	<QExpanded.Tab3>Indiv. Weap &amp; Apparel</QExpanded.Tab3>
-	<QExpanded.Tab4>Indiv. Other</QExpanded.Tab4>
+	<QExpanded.Tab0>Quality Deteriorates</QExpanded.Tab0>
+	<QExpanded.Tab1>Quality Expanded</QExpanded.Tab1>
+
+	<QExpanded.DetRestart>Deterioration Req. Restart</QExpanded.DetRestart>
+	<QExpanded.Restart>Changes Require Restart</QExpanded.Restart>
 
 	<QExpanded.BldgHit>Building quality affects hit points.</QExpanded.BldgHit>
 	<QExpanded.WeapHit>Weapon quality affects hit points.</QExpanded.WeapHit>
@@ -18,8 +18,25 @@
 	<QExpanded.WeapDeteriorates>Weapon quality deteriorates.</QExpanded.WeapDeteriorates>
 	<QExpanded.AppDeteriorates>Apparel quality deteriorates.</QExpanded.AppDeteriorates>
 	<QExpanded.StuffDeteriorates>Stuff quality deteriorates.</QExpanded.StuffDeteriorates>
-	<QExpanded.IngDeteriorates>Ingredient quality deteriorates when rotting.</QExpanded.IngDeteriorates>
-	<QExpanded.IngDet2>Ingredient quality deterioraes when frozen.</QExpanded.IngDet2>
-	<QExpanded.OtherDeteriorates>Other item quality deteriorates.</QExpanded.OtherDeteriorates>
+	<QExpanded.IngDeteriorates>Food quality deteriorates when rotting.</QExpanded.IngDeteriorates>
+	<QExpanded.IngDet2>Food quality deterioraes when frozen.</QExpanded.IngDet2>
+	<QExpanded.OtherDeteriorates>Stuff, food and other item quality deteriorates.</QExpanded.OtherDeteriorates>
+
+	<QExpanded.HitFactors>Hit point quality factors:</QExpanded.HitFactors>
+	<QExpanded.ResSpeed>Quality affects research speed:</QExpanded.ResSpeed>
+	<QExpanded.TurretAcc>Quality affects the accuracy of turrets:</QExpanded.TurretAcc>
+	<QExpanded.WorkSpeed>Quality affects work speed:</QExpanded.WorkSpeed>
+	<QExpanded.DoorSpeed>Quality affects door speed:</QExpanded.DoorSpeed>
+	<QExpanded.RangedCD>Quality affects ranged cooldown:</QExpanded.RangedCD>
+	<QExpanded.MeleeCD>Quality affects melee cooldown:</QExpanded.MeleeCD>
+	<QExpanded.MedPotency>Quality affects medical potency:</QExpanded.MedPotency>
+	
+	<QExpanded.Awful>Awful</QExpanded.Awful>
+	<QExpanded.Poor>Poor</QExpanded.Poor>
+	<QExpanded.Normal>Normal</QExpanded.Normal>
+	<QExpanded.Good>Good</QExpanded.Good>
+	<QExpanded.Excellent>Excellent</QExpanded.Excellent>
+	<QExpanded.Masterwork>Masterwork</QExpanded.Masterwork>
+	<QExpanded.Legendary>Legendary</QExpanded.Legendary>
 
 </LanguageData>

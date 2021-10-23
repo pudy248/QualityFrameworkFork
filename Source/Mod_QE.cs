@@ -32,24 +32,33 @@ namespace QualityExpanded
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
+            //Log.Message("Current y is " + inRect.y);
+            //Log.Message("Height is " + inRect.height);
+            //Log.Message("Hight point is " + inRect.yMin);
+            //Log.Message("Low point is " + inRect.yMax);
+
             listing.Begin(inRect);
             TextAnchor anchor = Text.Anchor;
             Rect rect = inRect;
-            //rect.height -= 60f;
-            //rect.y -= 60f;
+            rect.height -= 60f;
             if (listing.ButtonText("Reset Settings", null)) Settings_QE.ResetDefaults();
-            DoTabs(listing, inRect);
-            //Settings_Config.DoStatParts(listing, inRect);
+            DoTabs(listing, rect);
+            listing.End();
+
+            listing.Begin(new Rect(inRect.x + inRect.width / 3, 590f, inRect.width / 2, 48f));
+            Text.Anchor = TextAnchor.MiddleCenter;
+            Text.Font = GameFont.Medium;
+            if (currentTab == 0) listing.Label("QExpanded.DetRestart".Translate());
+            else listing.Label("QExpanded.Restart".Translate());;
             Text.Anchor = anchor;
             listing.End();
-            //DoStatParts(inRect);
             base.DoSettingsWindowContents(inRect);
         }
 
         public static void DoTabs(Listing_Standard listing, Rect canvas)
         {
             canvas = canvas.Rounded();
-            canvas.height -= 30f;
+            canvas.height -= 50f;
             canvas.y += 30f;
             Widgets.DrawMenuSection(canvas);
             List<TabRecord> tabs = new List<TabRecord>()
@@ -64,7 +73,7 @@ namespace QualityExpanded
                     currentTab = 1;
                     settings.Write();
                 }, currentTab == 1),
-                new TabRecord("QExpanded.Tab2".Translate(), delegate ()
+                /*new TabRecord("QExpanded.Tab2".Translate(), delegate ()
                 {
                     currentTab = 2;
                     settings.Write();
@@ -78,11 +87,12 @@ namespace QualityExpanded
                 {
                     currentTab = 4;
                     settings.Write();
-                }, currentTab == 4)
+                }, currentTab == 4)*/
             };
             TabDrawer.DrawTabs(canvas, tabs, 200f);
-            if (currentTab == 0) Settings_Config.DoHitPoints(listing, canvas);
-            if (currentTab == 1) Settings_Config.DoBldg(listing, canvas);
+            if (currentTab == 0) Settings_Config.DoDeterioration(listing, canvas);
+            if (currentTab == 1) Settings_Config.DoExpanded(listing, canvas);
+            //if (currentTab == 2) Settings_Config.DoWeapons(listing, canvas);
 
 
 

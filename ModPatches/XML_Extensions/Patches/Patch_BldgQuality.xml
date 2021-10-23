@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="XmlExtensions.OptionalPatchExternal">
+				<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+				<field>resQuality</field>
+				<caseTrue>
+					<Operation Class="XmlExtensions.UseSettingsExternal">
+						<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+						<fields>
+							<li>awfulRes</li>
+							<li>poorRes</li>
+							<li>normalRes</li>
+							<li>goodRes</li>
+							<li>excRes</li>
+							<li>masterRes</li>
+							<li>legRes</li>
+						</fields>
+						<apply>
+						  <Operation Class="XmlExtensions.PatchOperationAddOrReplace">
+								<xpath>Defs/StatDef[defName="ResearchSpeedFactor"]/parts</xpath>
+								<safetyDepth>1</safetyDepth>
+								<value>
+									<li Class="StatPart_Quality">
+										<factorAwful>{awfulRes}</factorAwful>
+										<factorPoor>{poorRes}</factorPoor>
+										<factorNormal>{normalRes}</factorNormal>
+										<factorGood>{goodRes}</factorGood>
+										<factorExcellent>{excRes}</factorExcellent>
+										<factorMasterwork>{masterRes}</factorMasterwork>
+										<factorLegendary>{legRes}</factorLegendary>
+									</li>
+								</value>			
+						  </Operation>					
+						</apply>			
+					</Operation>	
+				</caseTrue>
+			</li>	
+			<li Class="XmlExtensions.OptionalPatchExternal">
+				<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+				<field>workQuality</field>
+				<caseTrue>
+					<Operation Class="XmlExtensions.UseSettingsExternal">
+						<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+						<fields>
+							<li>awfulWork</li>
+							<li>poorWork</li>
+							<li>normalWork</li>
+							<li>goodWork</li>
+							<li>excWork</li>
+							<li>masterWork</li>
+							<li>legWork</li>
+						</fields>
+						<apply>
+						  <Operation Class="XmlExtensions.PatchOperationAddOrReplace">
+								<xpath>Defs/StatDef[defName="WorkTableWorkSpeedFactor"]/parts</xpath>
+								<safetyDepth>1</safetyDepth>
+								<value>
+									<li Class="StatPart_Quality">
+										<factorAwful>{awfulWork}</factorAwful>
+										<factorPoor>{poorWork}</factorPoor>
+										<factorNormal>{normalWork}</factorNormal>
+										<factorGood>{goodWork}</factorGood>
+										<factorExcellent>{excWork}</factorExcellent>
+										<factorMasterwork>{masterWork}</factorMasterwork>
+										<factorLegendary>{legWork}</factorLegendary>
+									</li>
+								</value>			
+						  </Operation>					
+						</apply>			
+					</Operation>	
+				</caseTrue>
+			</li>
+			<li Class="XmlExtensions.OptionalPatchExternal">
+				<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+				<field>doorQuality</field>
+				<caseTrue>
+					<Operation Class="XmlExtensions.UseSettingsExternal">
+						<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+						<fields>
+							<li>awfulDoor</li>
+							<li>poorDoor</li>
+							<li>normalDoor</li>
+							<li>goodDoor</li>
+							<li>excDoor</li>
+							<li>masterDoor</li>
+							<li>legDoor</li>
+						</fields>
+						<apply>
+							<Operation Class="XmlExtensions.PatchOperationAddOrReplace">
+								<xpath>Defs/StatDef[defName="DoorOpenSpeed"]</xpath>
+								<safetyDepth>1</safetyDepth>
+								<value>
+									<parts>
+										<li Class="StatPart_Quality">
+											<factorAwful>{awfulDoor}</factorAwful>
+											<factorPoor>{poorDoor}</factorPoor>
+											<factorNormal>{normalDoor}</factorNormal>
+											<factorGood>{goodDoor}</factorGood>
+											<factorExcellent>{excDoor}</factorExcellent>
+											<factorMasterwork>{masterDoor}</factorMasterwork>
+											<factorLegendary>{legDoor}</factorLegendary>
+										</li>
+									</parts>
+								</value>
+						  </Operation>					
+						</apply>			
+					</Operation>	
+				</caseTrue>
+			</li>
+			<li Class="XmlExtensions.OptionalPatchExternal">
+				<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+				<field>rangedQuality</field>
+				<caseTrue>
+					<Operation Class="XmlExtensions.UseSettingsExternal">
+						<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+						<fields>
+							<li>awfulRanged</li>
+							<li>poorRanged</li>
+							<li>normalRanged</li>
+							<li>goodRanged</li>
+							<li>excRanged</li>
+							<li>masterRanged</li>
+							<li>legRanged</li>
+						</fields>
+						<apply>
+						  <Operation Class="XmlExtensions.PatchOperationSafeAddOrReplace">
+								<xpath>Defs/StatDef[defName="RangedWeapon_Cooldown"]</xpath>
+								<safetyDepth>1</safetyDepth>
+								<value>
+									<parts>
+										<li Class="StatPart_Quality">
+											<factorAwful>{awfulRanged}</factorAwful>
+											<factorPoor>{poorRanged}</factorPoor>
+											<factorNormal>{normalRanged}</factorNormal>
+											<factorGood>{goodRanged}</factorGood>
+											<factorExcellent>{excRanged}</factorExcellent>
+											<factorMasterwork>{masterRanged}</factorMasterwork>
+											<factorLegendary>{legRanged}</factorLegendary>
+										</li>
+									</parts>
+								</value>			
+						  </Operation>					
+						</apply>			
+					</Operation>	
+				</caseTrue>
+			</li>
+			<li Class="XmlExtensions.OptionalPatchExternal">
+				<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+				<field>meleeQuality</field>
+				<caseTrue>
+					<Operation Class="XmlExtensions.UseSettingsExternal">
+						<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+						<fields>
+							<li>awfulMelee</li>
+							<li>poorMelee</li>
+							<li>normalMelee</li>
+							<li>goodMelee</li>
+							<li>excMelee</li>
+							<li>masterMelee</li>
+							<li>legMelee</li>
+						</fields>
+						<apply>
+						  <Operation Class="XmlExtensions.PatchOperationSafeAddOrReplace">
+								<xpath>Defs/StatDef[defName="MeleeWeapon_CooldownMultiplier"]</xpath>
+								<safetyDepth>1</safetyDepth>
+								<value>
+									<parts>
+										<li Class="StatPart_Quality">
+											<factorAwful>{awfulMelee}</factorAwful>
+											<factorPoor>{poorMelee}</factorPoor>
+											<factorNormal>{normalMelee}</factorNormal>
+											<factorGood>{goodMelee}</factorGood>
+											<factorExcellent>{excMelee}</factorExcellent>
+											<factorMasterwork>{masterMelee}</factorMasterwork>
+											<factorLegendary>{legMelee}</factorLegendary>
+										</li>
+									</parts>
+								</value>			
+						  </Operation>					
+						</apply>			
+					</Operation>	
+				</caseTrue>
+			</li>
+			<li Class="XmlExtensions.OptionalPatchExternal">
+				<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+				<field>medQuality</field>
+				<caseTrue>
+					<Operation Class="XmlExtensions.UseSettingsExternal">
+						<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+						<fields>
+							<li>awfulMeds</li>
+							<li>poorMeds</li>
+							<li>normalMeds</li>
+							<li>goodMeds</li>
+							<li>excMeds</li>
+							<li>masterMeds</li>
+							<li>legMeds</li>
+						</fields>
+						<apply>
+						  <Operation Class="XmlExtensions.PatchOperationSafeAddOrReplace">
+								<xpath>Defs/StatDef[defName="MedicalPotency"]</xpath>
+								<safetyDepth>1</safetyDepth>
+								<value>
+									<parts>
+										<li Class="StatPart_Quality">
+											<factorAwful>{awfulMeds}</factorAwful>
+											<factorPoor>{poorMeds}</factorPoor>
+											<factorNormal>{normalMeds}</factorNormal>
+											<factorGood>{goodMeds}</factorGood>
+											<factorExcellent>{excMeds}</factorExcellent>
+											<factorMasterwork>{masterMeds}</factorMasterwork>
+											<factorLegendary>{legMeds}</factorLegendary>
+										</li>
+									</parts>
+								</value>			
+						  </Operation>					
+						</apply>			
+					</Operation>	
+				</caseTrue>
+			</li>
+			<!--<li Class="XmlExtensions.OptionalPatchExternal">
+				<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+				<field>turretQuality</field>
+				<caseTrue>
+					<Operation Class="XmlExtensions.UseSettingsExternal">
+						<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+						<fields>
+							<li>awfulTurret</li>
+							<li>poorTurret</li>
+							<li>normalTurret</li>
+							<li>goodTurret</li>
+							<li>excTurret</li>
+							<li>masterTurret</li>
+							<li>legTurret</li>
+						</fields>
+						<apply>
+						  <Operation Class="XmlExtensions.PatchOperationSafeAddOrReplace">
+								<xpath>Defs/StatDef[defName="ShootingAccuracyTurret"]</xpath>
+								<safetyDepth>1</safetyDepth>
+								<value>
+									<parts>
+										<li Class="StatPart_Quality">
+											<factorAwful>{awfulTurret}</factorAwful>
+											<factorPoor>{poorTurret}</factorPoor>
+											<factorNormal>{normalTurret}</factorNormal>
+											<factorGood>{goodTurret}</factorGood>
+											<factorExcellent>{excTurret}</factorExcellent>
+											<factorMasterwork>{masterTurret}</factorMasterwork>
+											<factorLegendary>{legTurret}</factorLegendary>
+										</li>
+									</parts>
+								</value>			
+						  </Operation>					
+						</apply>			
+					</Operation>	
+				</caseTrue>
+			</li>-->
+		</operations>
+	</Operation>
+</Patch>

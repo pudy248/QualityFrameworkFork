@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods><li>XML Extensions</li></mods>
+		<nomatch Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/StatDef[defName="RangedWeapon_Cooldown" or defName="MeleeWeapon_CooldownMultiplier"]</xpath>
+					<value>
+						<parts>
+							<li Class="StatPart_Quality">
+								<factorAwful>.8</factorAwful>
+								<factorPoor>.9</factorPoor>
+								<factorNormal>1</factorNormal>
+								<factorGood>1.1</factorGood>
+								<factorExcellent>1.2</factorExcellent>
+								<factorMasterwork>1.35</factorMasterwork>
+								<factorLegendary>1.5</factorLegendary>
+							</li>
+						</parts>
+					</value>
+				</li>
+				<li Class="PatchOperationFindMod">
+					<mods><li>Quality Framework</li></mods>
+					<match Class="PatchOperationSequence">
+						<operations>
+							<li Class="PatchOperationAdd">
+								<xpath>Defs/StatDef[defName="ResearchSpeedFactor"]/parts</xpath>
+								<value>
+									<li Class="StatPart_Quality">
+										<factorAwful>.8</factorAwful>
+										<factorPoor>.9</factorPoor>
+										<factorNormal>1</factorNormal>
+										<factorGood>1.1</factorGood>
+										<factorExcellent>1.2</factorExcellent>
+										<factorMasterwork>1.35</factorMasterwork>
+										<factorLegendary>1.5</factorLegendary>
+									</li>
+								</value>
+							</li>
+							<li Class="PatchOperationAdd">
+								<xpath>Defs/StatDef[defName="WorkTableWorkSpeedFactor"]/parts</xpath>
+								<value>
+									<li Class="StatPart_Quality">
+										<factorAwful>.8</factorAwful>
+										<factorPoor>.9</factorPoor>
+										<factorNormal>1</factorNormal>
+										<factorGood>1.1</factorGood>
+										<factorExcellent>1.2</factorExcellent>
+										<factorMasterwork>1.35</factorMasterwork>
+										<factorLegendary>1.5</factorLegendary>
+									</li>
+								</value>
+							</li>		
+							<li Class="PatchOperationFindMod">
+								<mods><li>Quality Doors</li></mods>
+								<nomatch Class="PatchOperationAdd">
+									<xpath>Defs/StatDef[defName="DoorOpenSpeed"]</xpath>
+									<value>
+										<parts>
+											<li Class="StatPart_Quality">
+												<factorAwful>.8</factorAwful>
+												<factorPoor>.9</factorPoor>
+												<factorNormal>1</factorNormal>
+												<factorGood>1.1</factorGood>
+												<factorExcellent>1.2</factorExcellent>
+												<factorMasterwork>1.35</factorMasterwork>
+												<factorLegendary>1.5</factorLegendary>
+											</li>
+										</parts>
+									</value>						
+								</nomatch>			
+							</li>
+							<li Class="PatchOperationAdd">
+								<xpath>Defs/StatDef[defName="MedicalPotency"]</xpath>
+								<value>
+									<parts>
+										<li Class="StatPart_Quality">
+											<factorAwful>.9</factorAwful>
+											<factorPoor>.95</factorPoor>
+											<factorNormal>1</factorNormal>
+											<factorGood>1.05</factorGood>
+											<factorExcellent>1.1</factorExcellent>
+											<factorMasterwork>1.15</factorMasterwork>
+											<factorLegendary>1.3</factorLegendary>
+										</li>
+									</parts>
+								</value>
+							</li>
+				<!--<li Class="PatchOperationAdd">
+					<xpath>Defs/StatDef[defName="ShootingAccuracyTurret"]</xpath>
+					<value>
+						<parts>
+							<li Class="StatPart_Quality">
+								<factorAwful>.8</factorAwful>
+								<factorPoor>.9</factorPoor>
+								<factorNormal>1</factorNormal>
+								<factorGood>1.1</factorGood>
+								<factorExcellent>1.2</factorExcellent>
+								<factorMasterwork>1.35</factorMasterwork>
+								<factorLegendary>1.5</factorLegendary>
+							</li>
+						</parts>
+					</value>
+				</li>-->
+						</operations>
+					</match>
+				</li>
+			</operations>
+		</nomatch>
+	</Operation>
+</Patch>
