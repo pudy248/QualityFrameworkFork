@@ -10,7 +10,6 @@ namespace QualityExpanded
     public class QualityLoss : MapComponent
     {
         public int lastQualityLossTick = -1;
-        public bool qualFramework = false;
 
         public QualityLoss(Map map) : base(map)
         {
@@ -31,7 +30,11 @@ namespace QualityExpanded
                 {
                     CheckWeapons();
                 }
-                if (Settings_QE.otherDeteriorates && qualFramework)
+                if (Settings_QE.appHitQual && Settings_QE.appDeteriorates)
+                {
+                    CheckApparel();
+                }
+                if (Settings_QE.otherDeteriorates && Settings_QE.qualFramework)
                 {
                     CheckOther();
                 }
@@ -71,6 +74,15 @@ namespace QualityExpanded
                         CheckQualityLoss(thing);
                     }
                 }
+            }
+        }
+
+        public void CheckApparel()
+        {
+            List<Thing> things = map.listerThings.ThingsInGroup(ThingRequestGroup.Apparel);
+            for (int i = 0; i < things.Count; i++)
+            {
+                CheckQualityLoss(things[i]);
             }
         }
 
@@ -114,7 +126,7 @@ namespace QualityExpanded
         {
             if (Settings_QE.appDeteriorates && armorThing != null) CheckQualityLoss(armorThing);
         }
-
+         
         public static void CheckQualityLoss(Thing thing)
         {
             CompQuality comp = thing.TryGetComp<CompQuality>(); Log.Message("Checking for quality loss for " + thing.Label);
@@ -123,16 +135,18 @@ namespace QualityExpanded
             int quality = (int)comp.Quality;
             if (quality <= 0) 
                 return;
-            float num = 1f;
+            int num = 2;
+            int curHit = thing.HitPoints;
             if (quality > 4 && thing.TryGetComp<CompArt>()?.TaleRef != null)
             {
                 num += quality - 4;
                 quality = 4;
             }
-            float factor = Quality_HitPoints.GetQualityFactor((QualityCategory)(quality - 1)); //Log.Message("Chance is " + ((float)(1f - thing.HitPoints / (thing.MaxHitPoints * factor)) / num).ToString());
-            if (Rand.Value < (1f - thing.HitPoints / (thing.MaxHitPoints * factor)) / num)
+            float factor = Quality_HitPoints.GetQualityFactor((QualityCategory)(quality - 1)); Log.Message("Chance is " + ((1f - (float)thing.HitPoints / thing.MaxHitPoints) / num).ToString());
+            if (curHit < (thing.def.GetStatValueAbstract(StatDefOf.MaxHitPoints, thing.Stuff) * factor) && Rand.Value < (1f - (float)curHit / thing.MaxHitPoints) / num)
             {
                 comp.SetQuality((QualityCategory)(quality - 1), ArtGenerationContext.Colony); Log.Message("Lost quality");
+                if (curHit < thing.MaxHitPoints) thing.HitPoints = curHit;
             }
         }
     }

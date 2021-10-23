@@ -15,7 +15,16 @@ namespace QualityExpanded
     {
         [HarmonyPatch(typeof(Thing), "MaxHitPoints", MethodType.Getter)]
         [HarmonyPostfix]
-        public static void AdjustMaxHitPoints(ref int __result, Thing __instance)
+        [HarmonyPriority(Priority.High)]
+        public static void GetMaxHitPoints(ref int __result, Thing __instance, out int __state)
+        {
+            __state = __result;
+        }
+
+        [HarmonyPatch(typeof(Thing), "MaxHitPoints", MethodType.Getter)]
+        [HarmonyPostfix]
+        [HarmonyPriority(Priority.VeryLow)]
+        public static void AdjustMaxHitPoints(ref int __result, Thing __instance, int __state)
         {
             if (__instance.def.building != null)
             {
@@ -41,7 +50,7 @@ namespace QualityExpanded
             CompQuality comp = __instance.TryGetComp<CompQuality>();
             if (comp != null)
             {
-                __result = Mathf.RoundToInt(__result * GetQualityFactor(comp.Quality));
+                __result = Mathf.RoundToInt(__state * GetQualityFactor(comp.Quality));
             }
             return;
         }
@@ -50,10 +59,9 @@ namespace QualityExpanded
         [HarmonyPostfix]
         public static void AdjustCurHitPoints(CompQuality __instance)
         {
-            if (__instance.parent.HitPoints > __instance.parent.MaxHitPoints)
-                __instance.parent.HitPoints = __instance.parent.MaxHitPoints;
+            __instance.parent.HitPoints = __instance.parent.MaxHitPoints;
         }
-        
+
         public static float GetQualityFactor(QualityCategory q)
         {
             //Log.Message("Getting Quality Factor");
