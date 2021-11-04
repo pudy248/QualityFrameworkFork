@@ -2,11 +2,17 @@
 
 <LanguageData>
 	<QExpanded.Tab0>Quality Deteriorates</QExpanded.Tab0>
-	<QExpanded.Tab1>Quality Expanded</QExpanded.Tab1>
+	<QExpanded.Tab1>Quality Bldg Expanded</QExpanded.Tab1>
+	<QExpanded.Tab2>Quality Items Expanded</QExpanded.Tab2>
 
-	<QExpanded.DetRestart>Deterioration Req. Restart</QExpanded.DetRestart>
-	<QExpanded.Restart>Changes Require Restart</QExpanded.Restart>
+	<QExpanded.Enable>Enable Hit Point Quality Options</QExpanded.Enable>
+	<QExpanded.Disable>Disable All Hit Point Quality &amp; Deterioration</QExpanded.Disable>
+	<QExpanded.AllRestart>**All Changes Require Restart**</QExpanded.AllRestart>
+	<QExpanded.Restart>**Restart to Enable/Disable**</QExpanded.Restart>
+	<QExpanded.NoRestart>**Restart Not Required**</QExpanded.NoRestart>
+	<QExpanded.RestartReq>Restart Required</QExpanded.RestartReq>
 
+	<QExpanded.AllHit>Enable/Disable all hit point quality:</QExpanded.AllHit>
 	<QExpanded.BldgHit>Building quality affects hit points.</QExpanded.BldgHit>
 	<QExpanded.WeapHit>Weapon quality affects hit points.</QExpanded.WeapHit>
 	<QExpanded.AppHit>Apparel quality affects hit points.</QExpanded.AppHit>
@@ -21,12 +27,20 @@
 	<QExpanded.IngDeteriorates>Food quality deteriorates when rotting.</QExpanded.IngDeteriorates>
 	<QExpanded.IngDet2>Food quality deterioraes when frozen.</QExpanded.IngDet2>
 	<QExpanded.OtherDeteriorates>Stuff, food and other item quality deteriorates.</QExpanded.OtherDeteriorates>
+	
+	<QExpanded.Vanilla>Change vanilla quality effects(vanilla = true)</QExpanded.Vanilla>
+	<QExpanded.Beauty>Quality affects beauty.</QExpanded.Beauty>
+	<QExpanded.BedRest>Quality affects bed rest effectiveness.</QExpanded.BedRest>
+	<QExpanded.Comfort>Quality affects comfort.</QExpanded.Comfort>
+	<QExpanded.Deterioration>Quality affects deterioration rate.</QExpanded.Deterioration>
 
 	<QExpanded.HitFactors>Hit point quality factors:</QExpanded.HitFactors>
 	<QExpanded.ResSpeed>Quality affects research speed:</QExpanded.ResSpeed>
 	<QExpanded.TurretAcc>Quality affects the accuracy of turrets:</QExpanded.TurretAcc>
 	<QExpanded.WorkSpeed>Quality affects work speed:</QExpanded.WorkSpeed>
 	<QExpanded.DoorSpeed>Quality affects door speed:</QExpanded.DoorSpeed>
+	<QExpanded.Power>Quality affects power:</QExpanded.Power>
+	
 	<QExpanded.RangedCD>Quality affects ranged cooldown:</QExpanded.RangedCD>
 	<QExpanded.MeleeCD>Quality affects melee cooldown:</QExpanded.MeleeCD>
 	<QExpanded.MedPotency>Quality affects medical potency:</QExpanded.MedPotency>

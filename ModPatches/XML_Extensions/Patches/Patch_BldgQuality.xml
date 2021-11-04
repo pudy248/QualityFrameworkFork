@@ -3,11 +3,11 @@
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="XmlExtensions.OptionalPatchExternal">
-				<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+				<ModClass>QualityExpanded.Mod_QE</ModClass>
 				<field>resQuality</field>
 				<caseTrue>
 					<Operation Class="XmlExtensions.UseSettingsExternal">
-						<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+						<ModClass>QualityExpanded.Mod_QE</ModClass>
 						<fields>
 							<li>awfulRes</li>
 							<li>poorRes</li>
@@ -38,11 +38,11 @@
 				</caseTrue>
 			</li>	
 			<li Class="XmlExtensions.OptionalPatchExternal">
-				<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+				<ModClass>QualityExpanded.Mod_QE</ModClass>
 				<field>workQuality</field>
 				<caseTrue>
 					<Operation Class="XmlExtensions.UseSettingsExternal">
-						<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+						<ModClass>QualityExpanded.Mod_QE</ModClass>
 						<fields>
 							<li>awfulWork</li>
 							<li>poorWork</li>
@@ -73,11 +73,11 @@
 				</caseTrue>
 			</li>
 			<li Class="XmlExtensions.OptionalPatchExternal">
-				<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+				<ModClass>QualityExpanded.Mod_QE</ModClass>
 				<field>doorQuality</field>
 				<caseTrue>
 					<Operation Class="XmlExtensions.UseSettingsExternal">
-						<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+						<ModClass>QualityExpanded.Mod_QE</ModClass>
 						<fields>
 							<li>awfulDoor</li>
 							<li>poorDoor</li>
@@ -110,11 +110,11 @@
 				</caseTrue>
 			</li>
 			<li Class="XmlExtensions.OptionalPatchExternal">
-				<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+				<ModClass>QualityExpanded.Mod_QE</ModClass>
 				<field>rangedQuality</field>
 				<caseTrue>
 					<Operation Class="XmlExtensions.UseSettingsExternal">
-						<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+						<ModClass>QualityExpanded.Mod_QE</ModClass>
 						<fields>
 							<li>awfulRanged</li>
 							<li>poorRanged</li>
@@ -147,11 +147,11 @@
 				</caseTrue>
 			</li>
 			<li Class="XmlExtensions.OptionalPatchExternal">
-				<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+				<ModClass>QualityExpanded.Mod_QE</ModClass>
 				<field>meleeQuality</field>
 				<caseTrue>
 					<Operation Class="XmlExtensions.UseSettingsExternal">
-						<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+						<ModClass>QualityExpanded.Mod_QE</ModClass>
 						<fields>
 							<li>awfulMelee</li>
 							<li>poorMelee</li>
@@ -184,11 +184,11 @@
 				</caseTrue>
 			</li>
 			<li Class="XmlExtensions.OptionalPatchExternal">
-				<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+				<ModClass>QualityExpanded.Mod_QE</ModClass>
 				<field>medQuality</field>
 				<caseTrue>
 					<Operation Class="XmlExtensions.UseSettingsExternal">
-						<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+						<ModClass>QualityExpanded.Mod_QE</ModClass>
 						<fields>
 							<li>awfulMeds</li>
 							<li>poorMeds</li>
@@ -221,11 +221,11 @@
 				</caseTrue>
 			</li>
 			<!--<li Class="XmlExtensions.OptionalPatchExternal">
-				<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+				<ModClass>QualityExpanded.Mod_QE</ModClass>
 				<field>turretQuality</field>
 				<caseTrue>
 					<Operation Class="XmlExtensions.UseSettingsExternal">
-						<ModSettingsClass>QualityExpanded.Settings_QE</ModSettingsClass>
+						<ModClass>QualityExpanded.Mod_QE</ModClass>
 						<fields>
 							<li>awfulTurret</li>
 							<li>poorTurret</li>
