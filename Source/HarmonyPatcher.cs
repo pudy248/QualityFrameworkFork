@@ -19,7 +19,7 @@ namespace QualityExpanded
             {
                 harmony.Patch(AccessTools.Method(typeof(Building_TurretGun), "BurstCooldownTime"), postfix: new HarmonyMethod(typeof(Quality_Turret), "TurretCooldown"));
             }
-            if (!Settings_QE.hitPointQuality)
+            if (Settings_QE.hitPointQuality)
             {
                 DeteriorationPatcher(harmony);
                 harmony.PatchAll(Assembly.GetExecutingAssembly());
