@@ -1,0 +1,19 @@
+[11/4/2021]
+Adjusted default coodlown factors.
+Cooldown now applies to turrets.
+Vanilla quality effects (beauty, bed rest, comfort, deterioration rate) can be disabled.
+
+[11/3/2021]
+New Option: Affect Power output, requirements and battery efficiency.
+Improved performance when features disabled.
+
+[10/22/2021]
+Quality Deteriorates:
+	Quality modifies the maximum hit points (configurable). If the current hit points fall below the maximum hit points for the next lower quality, the item may suffer permanent quality loss. For buildings and armor, quality loss checks happen when damaged. For other items, quality loss checks happen once per day.
+	
+	Buildings with art won't lose quality unless they fall to good quality and have a reduced chance of loss.
+	
+Quality Expanded:
+	Configurations for research speed, work table speed, door speed, ranged and melee cooldowns, medical potency. Factors (configurable with XML Extensions) are based on vanilla defaults for accuracy and surgergy success chance.
+	
+

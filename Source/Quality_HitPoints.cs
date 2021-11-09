@@ -11,7 +11,7 @@ namespace QualityExpanded
         [HarmonyPatch(typeof(Thing), "MaxHitPoints", MethodType.Getter)]
         [HarmonyPostfix]
         [HarmonyPriority(Priority.High)]
-        public static void GetMaxHitPoints(ref int __result, Thing __instance, out int __state)
+        public static void GetMaxHitPoints(ref int __result, out int __state)
         {
             __state = __result;
         }

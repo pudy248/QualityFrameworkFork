@@ -14,74 +14,129 @@ namespace QualityExpanded
         private static string master = "QExpanded.Masterwork".Translate();
         private static string legendary = "QExpanded.Legendary".Translate();
 
+        public static bool origSetting = Settings_QE.hitPointQuality;
+        public static string buttonLabel;
+
         public static void DoDeterioration(Listing_Standard listing, Rect canvas)
         {
-            Rect rect = new Rect(canvas.x + 5f, canvas.y + 5f, canvas.width - 10f, 168f);
+            Rect rect = new Rect(canvas.x + 5f, canvas.y + 5f, canvas.width - 10f, 190f);
             listing.Begin(rect);
             listing.ColumnWidth = rect.width / 2 - 12f;
-            Text.Anchor = TextAnchor.MiddleLeft;
-            listing.CheckboxLabeled("QExpanded.BldgHit".Translate(), ref Settings_QE.bldgHitQual);
-            listing.CheckboxLabeled("QExpanded.WeapHit".Translate(), ref Settings_QE.weapHitQual);
-            listing.CheckboxLabeled("QExpanded.AppHit".Translate(), ref Settings_QE.appHitQual);
-            listing.CheckboxLabeled("QExpanded.StuffHit".Translate(), ref Settings_QE.stuffHitQual);
-            listing.CheckboxLabeled("QExpanded.IngHit".Translate(), ref Settings_QE.ingHitQual);
-            //if (Settings_QE.ingHitQual) listing.Gap(24f);
-            listing.CheckboxLabeled("QExpanded.OtherHit".Translate(), ref Settings_QE.otherHitQual);
-            listing.NewColumn();
-            if (Settings_QE.bldgHitQual) 
-                listing.CheckboxLabeled("QExpanded.BldgDeteriorates".Translate(), ref Settings_QE.bldgDeteriorates);
-            else 
-                listing.Gap(24f);
-            if (Settings_QE.weapHitQual)
-                listing.CheckboxLabeled("QExpanded.WeapDeteriorates".Translate(), ref Settings_QE.weapDeteriorates);
-            else 
-                listing.Gap(24f);
-            if (Settings_QE.appHitQual)
-                listing.CheckboxLabeled("QExpanded.AppDeteriorates".Translate(), ref Settings_QE.appDeteriorates);
-            else 
-                listing.Gap(24f);
-            if (Settings_QE.stuffHitQual || Settings_QE.ingHitQual || Settings_QE.otherHitQual)
-                listing.CheckboxLabeled("QExpanded.OtherDeteriorates".Translate(), ref Settings_QE.otherDeteriorates);
+            if (Settings_QE.hitPointQuality)
+            {
+                if (origSetting) buttonLabel = "QExpanded.Disable";
+                else buttonLabel = "QExpanded.RestartReq";
+                if (listing.ButtonText(buttonLabel.Translate()))
+                {
+                    Settings_QE.hitPointQuality = false;
+                    Settings_QE.deteriorationQuality = true;
+                }
+            }
             else
-                listing.Gap(24f);
+            {
+                if (origSetting) buttonLabel = "QExpanded.RestartReq";
+                else buttonLabel = "QExpanded.Enable";
+                if (listing.ButtonText(buttonLabel.Translate()))
+                {
+                    Settings_QE.hitPointQuality = true;
+                    Settings_QE.deteriorationQuality = false;
+                }
+            }
+            if (Settings_QE.hitPointQuality)
+            {
+                listing.CheckboxLabeled("QExpanded.BldgHit".Translate(), ref Settings_QE.bldgHitQual);
+                listing.CheckboxLabeled("QExpanded.WeapHit".Translate(), ref Settings_QE.weapHitQual);
+                listing.CheckboxLabeled("QExpanded.AppHit".Translate(), ref Settings_QE.appHitQual);
+                listing.CheckboxLabeled("QExpanded.StuffHit".Translate(), ref Settings_QE.stuffHitQual);
+                listing.CheckboxLabeled("QExpanded.IngHit".Translate(), ref Settings_QE.ingHitQual);
+                listing.CheckboxLabeled("QExpanded.OtherHit".Translate(), ref Settings_QE.otherHitQual);
+            }
+            else
+            {
+                listing.Gap(144f);
+            }
+            listing.NewColumn();
+            listing.Gap(8f);
+            if (Settings_QE.hitPointQuality)
+            {
+                Text.Anchor = TextAnchor.MiddleCenter;
+                listing.Label("QExpanded.Restart".Translate());
+                Text.Anchor = TextAnchor.MiddleLeft;
+                listing.Gap(8f);
+                if (Settings_QE.bldgHitQual)
+                    listing.CheckboxLabeled("QExpanded.BldgDeteriorates".Translate(), ref Settings_QE.bldgDeteriorates);
+                else
+                    listing.Gap(24f);
+                if (Settings_QE.weapHitQual)
+                    listing.CheckboxLabeled("QExpanded.WeapDeteriorates".Translate(), ref Settings_QE.weapDeteriorates);
+                else
+                    listing.Gap(24f);
+                if (Settings_QE.appHitQual)
+                    listing.CheckboxLabeled("QExpanded.AppDeteriorates".Translate(), ref Settings_QE.appDeteriorates);
+                else
+                    listing.Gap(24f);
+                if (Settings_QE.stuffHitQual || Settings_QE.ingHitQual || Settings_QE.otherHitQual)
+                    listing.CheckboxLabeled("QExpanded.OtherDeteriorates".Translate(), ref Settings_QE.otherDeteriorates);
+                else
+                    listing.Gap(24f);
+            }
             listing.Gap(48f);
             listing.End();
 
-            listing.Begin(new Rect(canvas.x + 5f, canvas.y + 172f, canvas.width - 10f, 10f));
+            listing.Begin(new Rect(canvas.x + 5f, canvas.y + 182f, canvas.width - 10f, 10f));
             listing.ColumnWidth = canvas.width - 10f;
             listing.GapLine(10f);
             listing.End();
 
-            listing.Begin(new Rect(canvas.x + 5f, canvas.y + 182f, canvas.width - 10f, canvas.height - 36f));
-            listing.ColumnWidth = rect.width / 3 - 10f;
+            listing.Begin(new Rect(canvas.x + 5f, canvas.y + 190f, canvas.width - 10f, canvas.height - 40f));
+            listing.ColumnWidth = rect.width / 2 - 12f;
 
             //Hit Points
-            listing.Label("QExpanded.HitFactors".Translate());
+            if (Settings_QE.hitPointQuality)
+            {
+                Text.Anchor = TextAnchor.MiddleCenter;
+                listing.Label("QExpanded.NoRestart".Translate());
+                Text.Anchor = TextAnchor.MiddleLeft;
+                listing.Label("QExpanded.HitFactors".Translate());
+                string awfulHit = Settings_QE.awfulHit.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), awful, ref Settings_QE.awfulHit, ref awfulHit, .05f, .5f, .05f, 10f);
+                string poorHit = Settings_QE.poorHit.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), poor, ref Settings_QE.poorHit, ref poorHit, .05f, .5f, .05f, 10f);
+                string normHit = Settings_QE.normalHit.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), normal, ref Settings_QE.normalHit, ref normHit, .05f, .5f, .05f, 10f);
+                string goodHit = Settings_QE.goodHit.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), good, ref Settings_QE.goodHit, ref goodHit, .05f, .5f, .05f, 10f);
+                string excHit = Settings_QE.excHit.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), excellent, ref Settings_QE.excHit, ref excHit, .05f, .5f, .05f, 10f);
+                string masterHit = Settings_QE.masterHit.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), master, ref Settings_QE.masterHit, ref masterHit, .05f, .5f, .05f, 10f);
+                string legHit = Settings_QE.legHit.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), legendary, ref Settings_QE.legHit, ref legHit, .05f, .5f, .05f, 10f);
+            }
+            listing.NewColumn();
+            Text.Anchor = TextAnchor.MiddleCenter;
+            listing.Label("QExpanded.Restart".Translate());
+            listing.Label("QExpanded.Vanilla".Translate());
+            listing.GapLine(8f);
             Text.Anchor = TextAnchor.MiddleLeft;
-            string awfulHit = Settings_QE.awfulHit.ToString();
-            Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), awful, ref Settings_QE.awfulHit, ref awfulHit, .05f, .5f, .05f, 10f);
-            string poorHit = Settings_QE.poorHit.ToString();
-            Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), poor, ref Settings_QE.poorHit, ref poorHit, .05f, .5f, .05f, 10f);
-            string normHit = Settings_QE.normalHit.ToString();
-            Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), normal, ref Settings_QE.normalHit, ref normHit, .05f, .5f, .05f, 10f);
-            string goodHit = Settings_QE.goodHit.ToString();
-            Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), good, ref Settings_QE.goodHit, ref goodHit, .05f, .5f, .05f, 10f);
-            string excHit = Settings_QE.excHit.ToString();
-            Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), excellent, ref Settings_QE.excHit, ref excHit, .05f, .5f, .05f, 10f);
-            string masterHit = Settings_QE.masterHit.ToString();
-            Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), master, ref Settings_QE.masterHit, ref masterHit, .05f, .5f, .05f, 10f);
-            string legHit = Settings_QE.legHit.ToString();
-            Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), legendary, ref Settings_QE.legHit, ref legHit, .05f, .5f, .05f, 10f);
+            listing.CheckboxLabeled("QExpanded.Beauty".Translate(), ref Settings_QE.beautyQuality);
+            listing.CheckboxLabeled("QExpanded.BedRest".Translate(), ref Settings_QE.bedQuality);
+            listing.CheckboxLabeled("QExpanded.Comfort".Translate(), ref Settings_QE.comfortQuality);
+            listing.CheckboxLabeled("QExpanded.Deterioration".Translate(), ref Settings_QE.deteriorationQuality);
             //listing.GapLine(6f);
             listing.End();
         }
 
-        public static void DoExpanded(Listing_Standard listing, Rect canvas)
+        public static void DoBldgExpanded(Listing_Standard listing, Rect canvas)
         {
             Rect rect = new Rect(canvas.x + 5f, canvas.y + 5f, canvas.width - 10f, canvas.height - 5f);
             listing.Begin(rect);
             listing.ColumnWidth = rect.width / 3 - 14f;
             //Research Speed
+            listing.Gap(8f);
+            Text.Anchor = TextAnchor.MiddleCenter;
+            listing.Label("QExpanded.AllRestart".Translate());
+            Text.Anchor = TextAnchor.MiddleLeft;
             listing.CheckboxLabeled("QExpanded.ResSpeed".Translate(), ref Settings_QE.resQuality);
             if (ModLister.HasActiveModWithName("XML Extensions"))
             {
@@ -102,42 +157,34 @@ namespace QualityExpanded
             }
             else
             {
-                listing.Gap(72f);
+                listing.Gap(78f);
                 Text.Anchor = TextAnchor.MiddleCenter;
                 listing.Label("Requires XML Extensions");
                 Text.Anchor = TextAnchor.MiddleLeft;
-                listing.Gap(72f);
+                listing.Gap(78f);
             }
             listing.GapLine(12f);
 
-            //Ranged Cooldown
-            listing.CheckboxLabeled("QExpanded.RangedCD".Translate(), ref Settings_QE.rangedQuality);
-            if (ModLister.HasActiveModWithName("XML Extensions"))
-            {
-                string awfulRanged = Settings_QE.awfulRanged.ToString();
-                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), awful, ref Settings_QE.awfulRanged, ref awfulRanged, .05f, .5f, .05f, 10f);
-                string poorRanged = Settings_QE.poorRanged.ToString();
-                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), poor, ref Settings_QE.poorRanged, ref poorRanged, .05f, .5f, .05f, 10f);
-                string normRanged = Settings_QE.normalRanged.ToString();
-                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), normal, ref Settings_QE.normalRanged, ref normRanged, .05f, .5f, .05f, 10f);
-                string goodRanged = Settings_QE.goodRanged.ToString();
-                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), good, ref Settings_QE.goodRanged, ref goodRanged, .05f, .5f, .05f, 10f);
-                string excRanged = Settings_QE.excRanged.ToString();
-                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), excellent, ref Settings_QE.excRanged, ref excRanged, .05f, .5f, .05f, 10f);
-                string masterRanged = Settings_QE.masterRanged.ToString();
-                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), master, ref Settings_QE.masterRanged, ref masterRanged, .05f, .5f, .05f, 10f);
-                string legRanged = Settings_QE.legRanged.ToString();
-                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), legendary, ref Settings_QE.legRanged, ref legRanged, .05f, .5f, .05f, 10f);
-            }
-            else
-            {
-                listing.Gap(72f);
-                Text.Anchor = TextAnchor.MiddleCenter;
-                listing.Label("Requires XML Extensions");
-                Text.Anchor = TextAnchor.MiddleLeft;
-                listing.Gap(72f);
-            }
-            listing.GapLine(12f);
+            //Power Output
+            Text.Anchor = TextAnchor.MiddleCenter;
+            listing.Label("QExpanded.Restart".Translate());
+            Text.Anchor = TextAnchor.MiddleLeft;
+            listing.CheckboxLabeled("QExpanded.Power".Translate(), ref Settings_QE.powerQuality);
+            string awfulPower = Settings_QE.awfulPower.ToString();
+            Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), awful, ref Settings_QE.awfulPower, ref awfulPower, .05f, .5f, .05f, 10f);
+            string poorPower = Settings_QE.poorPower.ToString();
+            Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), poor, ref Settings_QE.poorPower, ref poorPower, .05f, .5f, .05f, 10f);
+            string normPower = Settings_QE.normalPower.ToString();
+            Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), normal, ref Settings_QE.normalPower, ref normPower, .05f, .5f, .05f, 10f);
+            string goodPower = Settings_QE.goodPower.ToString();
+            Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), good, ref Settings_QE.goodPower, ref goodPower, .05f, .5f, .05f, 10f);
+            string excPower = Settings_QE.excPower.ToString();
+            Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), excellent, ref Settings_QE.excPower, ref excPower, .05f, .5f, .05f, 10f);
+            string masterPower = Settings_QE.masterPower.ToString();
+            Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), master, ref Settings_QE.masterPower, ref masterPower, .05f, .5f, .05f, 10f);
+            string legPower = Settings_QE.legPower.ToString();
+            Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), legendary, ref Settings_QE.legPower, ref legPower, .05f, .5f, .05f, 10f);
+
             //Turret Accuracy
             /*listing.CheckboxLabeled("QExpanded.TurretAcc".Translate(), ref Settings_QE.turretQuality);
             if (ModLister.HasActiveModWithName("XML Extensions"))
@@ -168,7 +215,11 @@ namespace QualityExpanded
             listing.GapLine(12f);*/
 
             listing.NewColumn();
+            listing.Gap(8f);
             //Work Table Speed
+            Text.Anchor = TextAnchor.MiddleCenter;
+            listing.Label("QExpanded.AllRestart".Translate());
+            Text.Anchor = TextAnchor.MiddleLeft;
             listing.CheckboxLabeled("QExpanded.WorkSpeed".Translate(), ref Settings_QE.workQuality);
             if (ModLister.HasActiveModWithName("XML Extensions"))
             {
@@ -189,45 +240,20 @@ namespace QualityExpanded
             }
             else
             {
-                listing.Gap(72f);
+                listing.Gap(78f);
                 Text.Anchor = TextAnchor.MiddleCenter;
                 listing.Label("Requires XML Extensions");
                 Text.Anchor = TextAnchor.MiddleLeft;
-                listing.Gap(72f);
-            }
-            listing.GapLine(12f);
-
-            //Melee Cooldown
-            listing.CheckboxLabeled("QExpanded.MeleeCD".Translate(), ref Settings_QE.meleeQuality);
-            if (ModLister.HasActiveModWithName("XML Extensions"))
-            {
-                string awfulMelee = Settings_QE.awfulMelee.ToString();
-                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), awful, ref Settings_QE.awfulMelee, ref awfulMelee, .05f, .5f, .05f, 10f);
-                string poorMelee = Settings_QE.poorMelee.ToString();
-                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), poor, ref Settings_QE.poorMelee, ref poorMelee, .05f, .5f, .05f, 10f);
-                string normMelee = Settings_QE.normalMelee.ToString();
-                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), normal, ref Settings_QE.normalMelee, ref normMelee, .05f, .5f, .05f, 10f);
-                string goodMelee = Settings_QE.goodMelee.ToString();
-                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), good, ref Settings_QE.goodMelee, ref goodMelee, .05f, .5f, .05f, 10f);
-                string excMelee = Settings_QE.excMelee.ToString();
-                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), excellent, ref Settings_QE.excMelee, ref excMelee, .05f, .5f, .05f, 10f);
-                string masterMelee = Settings_QE.masterMelee.ToString();
-                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), master, ref Settings_QE.masterMelee, ref masterMelee, .05f, .5f, .05f, 10f);
-                string legMelee = Settings_QE.legMelee.ToString();
-                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), legendary, ref Settings_QE.legMelee, ref legMelee, .05f, .5f, .05f, 10f);
-            }
-            else
-            {
-                listing.Gap(72f);
-                Text.Anchor = TextAnchor.MiddleCenter;
-                listing.Label("Requires XML Extensions");
-                Text.Anchor = TextAnchor.MiddleLeft;
-                listing.Gap(72f);
+                listing.Gap(78f);
             }
             listing.GapLine(12f);
 
             listing.NewColumn();
+            listing.Gap(8f);
             //Door Open Speed
+            Text.Anchor = TextAnchor.MiddleCenter;
+            listing.Label("QExpanded.AllRestart".Translate());
+            Text.Anchor = TextAnchor.MiddleLeft;
             listing.CheckboxLabeled("QExpanded.DoorSpeed".Translate(), ref Settings_QE.doorQuality);
             if (ModLister.HasActiveModWithName("XML Extensions"))
             {
@@ -248,15 +274,94 @@ namespace QualityExpanded
            }
             else
             {
-                listing.Gap(72f);
+                listing.Gap(78f);
                 Text.Anchor = TextAnchor.MiddleCenter;
                 listing.Label("Requires XML Extensions");
                 Text.Anchor = TextAnchor.MiddleLeft;
-                listing.Gap(72f);
+                listing.Gap(78f);
+            }
+            listing.GapLine(12f);
+            listing.End();
+        }
+
+        public static void DoItemExpanded(Listing_Standard listing, Rect canvas)
+        {
+            Rect rect = new Rect(canvas.x + 5f, canvas.y + 5f, canvas.width - 10f, canvas.height - 5f);
+            listing.Begin(rect);
+            listing.ColumnWidth = rect.width / 3 - 14f;
+            listing.Gap(8f);
+            //Ranged Cooldown
+            Text.Anchor = TextAnchor.MiddleCenter;
+            listing.Label("QExpanded.AllRestart".Translate());
+            Text.Anchor = TextAnchor.MiddleLeft;
+            listing.CheckboxLabeled("QExpanded.RangedCD".Translate(), ref Settings_QE.rangedQuality);
+            if (ModLister.HasActiveModWithName("XML Extensions"))
+            {
+                string awfulRanged = Settings_QE.awfulRanged.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), awful, ref Settings_QE.awfulRanged, ref awfulRanged, .05f, .5f, .05f, 10f);
+                string poorRanged = Settings_QE.poorRanged.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), poor, ref Settings_QE.poorRanged, ref poorRanged, .05f, .5f, .05f, 10f);
+                string normRanged = Settings_QE.normalRanged.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), normal, ref Settings_QE.normalRanged, ref normRanged, .05f, .5f, .05f, 10f);
+                string goodRanged = Settings_QE.goodRanged.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), good, ref Settings_QE.goodRanged, ref goodRanged, .05f, .5f, .05f, 10f);
+                string excRanged = Settings_QE.excRanged.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), excellent, ref Settings_QE.excRanged, ref excRanged, .05f, .5f, .05f, 10f);
+                string masterRanged = Settings_QE.masterRanged.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), master, ref Settings_QE.masterRanged, ref masterRanged, .05f, .5f, .05f, 10f);
+                string legRanged = Settings_QE.legRanged.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), legendary, ref Settings_QE.legRanged, ref legRanged, .05f, .5f, .05f, 10f);
+            }
+            else
+            {
+                listing.Gap(78f);
+                Text.Anchor = TextAnchor.MiddleCenter;
+                listing.Label("Requires XML Extensions");
+                Text.Anchor = TextAnchor.MiddleLeft;
+                listing.Gap(78f);
             }
             listing.GapLine(12f);
 
+            listing.NewColumn();
+            listing.Gap(8f);
+            //Melee Cooldown
+            Text.Anchor = TextAnchor.MiddleCenter;
+            listing.Label("QExpanded.AllRestart".Translate());
+            Text.Anchor = TextAnchor.MiddleLeft;
+            listing.CheckboxLabeled("QExpanded.MeleeCD".Translate(), ref Settings_QE.meleeQuality);
+            if (ModLister.HasActiveModWithName("XML Extensions"))
+            {
+                string awfulMelee = Settings_QE.awfulMelee.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), awful, ref Settings_QE.awfulMelee, ref awfulMelee, .05f, .5f, .05f, 10f);
+                string poorMelee = Settings_QE.poorMelee.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), poor, ref Settings_QE.poorMelee, ref poorMelee, .05f, .5f, .05f, 10f);
+                string normMelee = Settings_QE.normalMelee.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), normal, ref Settings_QE.normalMelee, ref normMelee, .05f, .5f, .05f, 10f);
+                string goodMelee = Settings_QE.goodMelee.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), good, ref Settings_QE.goodMelee, ref goodMelee, .05f, .5f, .05f, 10f);
+                string excMelee = Settings_QE.excMelee.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), excellent, ref Settings_QE.excMelee, ref excMelee, .05f, .5f, .05f, 10f);
+                string masterMelee = Settings_QE.masterMelee.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), master, ref Settings_QE.masterMelee, ref masterMelee, .05f, .5f, .05f, 10f);
+                string legMelee = Settings_QE.legMelee.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), legendary, ref Settings_QE.legMelee, ref legMelee, .05f, .5f, .05f, 10f);
+            }
+            else
+            {
+                listing.Gap(78f);
+                Text.Anchor = TextAnchor.MiddleCenter;
+                listing.Label("Requires XML Extensions");
+                Text.Anchor = TextAnchor.MiddleLeft;
+                listing.Gap(78f);
+            }
+            listing.GapLine(12f);
+
+            listing.NewColumn();
+            listing.Gap(8f);
             //Medical Potency
+            Text.Anchor = TextAnchor.MiddleCenter;
+            listing.Label("QExpanded.AllRestart".Translate());
+            Text.Anchor = TextAnchor.MiddleLeft;
             listing.CheckboxLabeled("QExpanded.MedPotency".Translate(), ref Settings_QE.medQuality);
             if (ModLister.HasActiveModWithName("XML Extensions"))
             {
@@ -277,11 +382,11 @@ namespace QualityExpanded
             }
             else
             {
-                listing.Gap(72f);
+                listing.Gap(78f);
                 Text.Anchor = TextAnchor.MiddleCenter;
                 listing.Label("Requires XML Extensions");
                 Text.Anchor = TextAnchor.MiddleLeft;
-                listing.Gap(72f);
+                listing.Gap(78f);
             }
             listing.GapLine(12f);
             listing.End();

@@ -65,7 +65,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="StatPatch.cs" />
+    <Compile Include="HarmonyPatcher.cs" />
+    <Compile Include="Quality_Power.cs" />
+    <Compile Include="Quality_Turret.cs" />
+    <Compile Include="StatPatcher.cs" />
     <Compile Include="Mod_QE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QualityLoss.cs" />

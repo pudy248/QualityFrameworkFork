@@ -4,14 +4,60 @@ using Verse;
 namespace QualityExpanded
 {
     [StaticConstructorOnStartup]
-    class StatPatch
+    class StatPatcher
     {
-        static StatPatch()
+        static StatPatcher()
         {
+            if (ModLister.HasActiveModWithName("Quality Framework"))
+            {
+                Settings_QE.qualFramework = true;
+            }
             //Log.Message("Patch running");
-            if (ModLister.HasActiveModWithName("Quality Framework")) Settings_QE.qualFramework = true;
             StatDef def;
             StatPart part;
+
+            //Vanilla Factors
+            if (!Settings_QE.beautyQuality)
+            {
+                def = DefDatabase<StatDef>.GetNamedSilentFail(StatDefOf.Beauty.defName);
+                if (def?.parts != null) //Log.Message("Found " + def.defName);
+                    for (int i = 0; i < def.parts.Count; i++)
+                    {
+                        part = def.parts[i];
+                        if (part.GetType() == typeof(StatPart_Quality)) def.parts.RemoveAt(i);
+                    }
+            }
+            if (!Settings_QE.bedQuality)
+            {
+                def = DefDatabase<StatDef>.GetNamedSilentFail(StatDefOf.BedRestEffectiveness.defName);
+                if (def?.parts != null) //Log.Message("Found " + def.defName);
+                    for (int i = 0; i < def.parts.Count; i++)
+                    {
+                        part = def.parts[i];
+                        if (part.GetType() == typeof(StatPart_Quality)) def.parts.RemoveAt(i);
+                    }
+            }
+            if (!Settings_QE.comfortQuality)
+            {
+                def = DefDatabase<StatDef>.GetNamedSilentFail(StatDefOf.Comfort.defName);
+                if (def?.parts != null) //Log.Message("Found " + def.defName);
+                    for (int i = 0; i < def.parts.Count; i++)
+                    {
+                        part = def.parts[i];
+                        if (part.GetType() == typeof(StatPart_Quality)) def.parts.RemoveAt(i);
+                    }
+            }
+            if (!Settings_QE.deteriorationQuality)
+            {
+                def = DefDatabase<StatDef>.GetNamedSilentFail(StatDefOf.DeteriorationRate.defName);
+                if (def?.parts != null) //Log.Message("Found " + def.defName);
+                    for (int i = 0; i < def.parts.Count; i++)
+                    {
+                        part = def.parts[i];
+                        if (part.GetType() == typeof(StatPart_Quality)) def.parts.RemoveAt(i);
+                    }
+            }
+
 
             //Buildings
             if (!Settings_QE.resQuality)
@@ -87,6 +133,5 @@ namespace QualityExpanded
                     }
             }*/
         }
-
     }
 }

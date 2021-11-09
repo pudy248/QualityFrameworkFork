@@ -6,7 +6,14 @@ namespace QualityExpanded
     public class Settings_QE : ModSettings
     {
         public static bool qualFramework = false;
+        //Vanilla Stats
+        public static bool beautyQuality = true;
+        public static bool bedQuality = true;
+        public static bool comfortQuality = true;
+        public static bool deteriorationQuality = false;
+
         //Hit Points
+        public static bool hitPointQuality = true;
         public static bool bldgHitQual = true;
         public static bool weapHitQual = true;
         public static bool appHitQual = true;
@@ -17,9 +24,6 @@ namespace QualityExpanded
         public static bool bldgDeteriorates = true;
         public static bool weapDeteriorates = true;
         public static bool appDeteriorates = true;
-        //public static bool stuffDeteriorates = false;
-        //public static bool ingDeteriorates = false;
-        //public static bool ing2Deteriorates = false;
         public static bool otherDeteriorates = true;
 
         public static float awfulHit = .5f;
@@ -29,6 +33,16 @@ namespace QualityExpanded
         public static float excHit = 1.5f;
         public static float masterHit = 1.75f;
         public static float legHit = 2.0f;
+
+        //Power Output
+        public static bool powerQuality = true;
+        public static float awfulPower = .8f;
+        public static float poorPower = .9f;
+        public static float normalPower = 1f;
+        public static float goodPower = 1.1f;
+        public static float excPower = 1.2f;
+        public static float masterPower = 1.3f;
+        public static float legPower = 1.4f;
 
         //Research Speed
         public static bool resQuality = true;
@@ -62,23 +76,23 @@ namespace QualityExpanded
 
         //Ranged Cooldown
         public static bool rangedQuality = false;
-        public static float awfulRanged = .8f;
-        public static float poorRanged = .9f;
+        public static float awfulRanged = 1.2f;
+        public static float poorRanged = 1.05f;
         public static float normalRanged = 1f;
-        public static float goodRanged = 1.1f;
-        public static float excRanged = 1.2f;
-        public static float masterRanged = 1.35f;
-        public static float legRanged = 1.5f;
+        public static float goodRanged = .975f;
+        public static float excRanged = .95f;
+        public static float masterRanged = .9f;
+        public static float legRanged = .8f;
 
         //Melee Cooldown
         public static bool meleeQuality = false;
-        public static float awfulMelee = .8f;
-        public static float poorMelee = .9f;
+        public static float awfulMelee = 1.1f;
+        public static float poorMelee = 1.03f;
         public static float normalMelee = 1f;
-        public static float goodMelee = 1.1f;
-        public static float excMelee = 1.2f;
-        public static float masterMelee = 1.35f;
-        public static float legMelee = 1.5f;
+        public static float goodMelee = .98f;
+        public static float excMelee = .95f;
+        public static float masterMelee = .925f;
+        public static float legMelee = .9f;
 
         //Medical Potency
         public static bool medQuality = false;
@@ -90,19 +104,16 @@ namespace QualityExpanded
         public static float masterMeds = 1.15f;
         public static float legMeds = 1.3f;
 
-        //Turret Accuracy
-        /*public static bool turretQuality = false;
-        public static float awfulTurret = .8f;
-        public static float poorTurret = .9f;
-        public static float normalTurret = 1f;
-        public static float goodTurret = 1.1f;
-        public static float excTurret = 1.2f;
-        public static float masterTurret = 1.35f;
-        public static float legTurret = 1.5f;*/
-
         public override void ExposeData()
         {
+            //VanillaStats
+            Scribe_Values.Look<bool>(ref beautyQuality, "beautyQuality", true);
+            Scribe_Values.Look<bool>(ref bedQuality, "bedQuality", true);
+            Scribe_Values.Look<bool>(ref comfortQuality, "comfortQuality", true);
+            Scribe_Values.Look<bool>(ref deteriorationQuality, "deteriorationQuality", false);
+
             //Hit Points
+            Scribe_Values.Look<bool>(ref hitPointQuality, "hitPointQuality", true);
             Scribe_Values.Look<bool>(ref bldgHitQual, "bldgHitQual", true);
             Scribe_Values.Look<bool>(ref weapHitQual, "weapHitQual", true);
             Scribe_Values.Look<bool>(ref appHitQual, "appHitQual", true);
@@ -112,9 +123,6 @@ namespace QualityExpanded
             Scribe_Values.Look<bool>(ref bldgDeteriorates, "bldgDeteriorates", true);
             Scribe_Values.Look<bool>(ref weapDeteriorates, "weapDeteriorates", true);
             Scribe_Values.Look<bool>(ref appDeteriorates, "appDeteriorates", true);
-            //Scribe_Values.Look<bool>(ref stuffDeteriorates, "stuffDeteriorates", false);
-            //Scribe_Values.Look<bool>(ref ingDeteriorates, "ingDeteriorates", false);
-            //Scribe_Values.Look<bool>(ref ing2Deteriorates, "ing2Deteriorates", false);
             Scribe_Values.Look<bool>(ref otherDeteriorates, "otherDeteriorates", true);
 
             Scribe_Values.Look<float>(ref awfulHit, "awfulHit", .5f);
@@ -125,8 +133,18 @@ namespace QualityExpanded
             Scribe_Values.Look<float>(ref masterHit, "masterHit", 1.75f);
             Scribe_Values.Look<float>(ref legHit, "legHit", 2f);
 
+            //Power Output
+            Scribe_Values.Look<bool>(ref powerQuality, "powerQuality", true);
+            Scribe_Values.Look<float>(ref awfulPower, "awfulPower", .8f);
+            Scribe_Values.Look<float>(ref poorPower, "poorPower", .9f);
+            Scribe_Values.Look<float>(ref normalPower, "normalPower", 1f);
+            Scribe_Values.Look<float>(ref goodPower, "goodPower", 1.1f);
+            Scribe_Values.Look<float>(ref excPower, "excPower", 1.2f);
+            Scribe_Values.Look<float>(ref masterPower, "masterPower", 1.3f);
+            Scribe_Values.Look<float>(ref legPower, "legPower", 1.4f);
+
             //Research Speed
-            Scribe_Values.Look<bool>(ref resQuality, "resQuality", false);
+            Scribe_Values.Look<bool>(ref resQuality, "resQuality", true);
             Scribe_Values.Look<float>(ref awfulRes, "awfulRes", .8f);
             Scribe_Values.Look<float>(ref poorRes, "poorRes", .9f);
             Scribe_Values.Look<float>(ref normalRes, "normalRes", 1f);
@@ -157,23 +175,23 @@ namespace QualityExpanded
 
             //Ranged Cooldown
             Scribe_Values.Look<bool>(ref rangedQuality, "rangedQuality", false);
-            Scribe_Values.Look<float>(ref awfulRanged, "awfulRanged", .8f);
-            Scribe_Values.Look<float>(ref poorRanged, "poorRanged", .9f);
+            Scribe_Values.Look<float>(ref awfulRanged, "awfulRanged", 1.2f);
+            Scribe_Values.Look<float>(ref poorRanged, "poorRanged", 1.05f);
             Scribe_Values.Look<float>(ref normalRanged, "normalRanged", 1f);
-            Scribe_Values.Look<float>(ref goodRanged, "goodRanged", 1.1f);
-            Scribe_Values.Look<float>(ref excRanged, "excRanged", 1.2f);
-            Scribe_Values.Look<float>(ref masterRanged, "masterRanged", 1.35f);
-            Scribe_Values.Look<float>(ref legRanged, "legRanged", 1.5f);
+            Scribe_Values.Look<float>(ref goodRanged, "goodRanged", .975f);
+            Scribe_Values.Look<float>(ref excRanged, "excRanged", .95f);
+            Scribe_Values.Look<float>(ref masterRanged, "masterRanged", .9f);
+            Scribe_Values.Look<float>(ref legRanged, "legRanged", .8f);
 
             //Melee Cooldown
             Scribe_Values.Look<bool>(ref meleeQuality, "meleeQuality", false);
-            Scribe_Values.Look<float>(ref awfulMelee, "awfulMelee", .8f);
-            Scribe_Values.Look<float>(ref poorMelee, "poorMelee", .9f);
+            Scribe_Values.Look<float>(ref awfulMelee, "awfulMelee", 1.1f);
+            Scribe_Values.Look<float>(ref poorMelee, "poorMelee", 1.03f);
             Scribe_Values.Look<float>(ref normalMelee, "normalMelee", 1f);
-            Scribe_Values.Look<float>(ref goodMelee, "goodMelee", 1.1f);
-            Scribe_Values.Look<float>(ref excMelee, "excMelee", 1.2f);
-            Scribe_Values.Look<float>(ref masterMelee, "masterMelee", 1.35f);
-            Scribe_Values.Look<float>(ref legMelee, "legMelee", 1.5f);
+            Scribe_Values.Look<float>(ref goodMelee, "goodMelee", .98f);
+            Scribe_Values.Look<float>(ref excMelee, "excMelee", .95f);
+            Scribe_Values.Look<float>(ref masterMelee, "masterMelee", .925f);
+            Scribe_Values.Look<float>(ref legMelee, "legMelee", .9f);
 
             //Medical Potency
             Scribe_Values.Look<bool>(ref medQuality, "medQuality", false);
@@ -183,7 +201,7 @@ namespace QualityExpanded
             Scribe_Values.Look<float>(ref goodMeds, "goodMeds", 1.05f);
             Scribe_Values.Look<float>(ref excMeds, "excMeds", 1.1f);
             Scribe_Values.Look<float>(ref masterMeds, "masterMeds", 1.15f);
-            Scribe_Values.Look<float>(ref legMeds, "legMeds", 1.3f);
+            Scribe_Values.Look<float>(ref legMeds, "legMeds", 1.25f);
 
             //Turret Accuracy
             /*Scribe_Values.Look<bool>(ref turretQuality, "turretQuality", false);
@@ -198,6 +216,7 @@ namespace QualityExpanded
 
         public static void ResetDefaults()
         {
+            hitPointQuality = true;
             bldgHitQual = true;
             weapHitQual = true;
             appHitQual = true;
@@ -208,10 +227,12 @@ namespace QualityExpanded
             bldgDeteriorates = true;
             weapDeteriorates = true;
             appDeteriorates = true;
-            // stuffDeteriorates = false;
-            // ingDeteriorates = false;
-            // ing2Deteriorates = false;
             otherDeteriorates = true;
+
+            beautyQuality = true;
+            bedQuality = true;
+            comfortQuality = true;
+            deteriorationQuality = false;
 
             awfulHit = .5f;
             poorHit = .75f;
@@ -220,6 +241,16 @@ namespace QualityExpanded
             excHit = 1.5f;
             masterHit = 1.75f;
             legHit = 2.0f;
+
+            //Power Output
+            powerQuality = true;
+            awfulPower = .8f;
+            poorPower = .9f;
+            normalPower = 1f;
+            goodPower = 1.1f;
+            excPower = 1.2f;
+            masterPower = 1.3f;
+            legPower = 1.4f;
 
             //Research Speed
             resQuality = true;
@@ -253,23 +284,23 @@ namespace QualityExpanded
 
             //Ranged Cooldown
             rangedQuality = false;
-            awfulRanged = .8f;
-            poorRanged = .9f;
+            awfulRanged = 1.2f;
+            poorRanged = 1.05f;
             normalRanged = 1f;
-            goodRanged = 1.1f;
-            excRanged = 1.2f;
-            masterRanged = 1.35f;
-            legRanged = 1.5f;
+            goodRanged = .975f;
+            excRanged = .95f;
+            masterRanged = .9f;
+            legRanged = .8f;
 
             //Melee Cooldown
             meleeQuality = false;
-            awfulMelee = .8f;
-            poorMelee = .9f;
+            awfulMelee = 1.1f;
+            poorMelee = 1.03f;
             normalMelee = 1f;
-            goodMelee = 1.1f;
-            excMelee = 1.2f;
-            masterMelee = 1.35f;
-            legMelee = 1.5f;
+            goodMelee = .98f;
+            excMelee = .95f;
+            masterMelee = .925f;
+            legMelee = .9f;
 
             //Medical Potency
             medQuality = false;
@@ -279,7 +310,7 @@ namespace QualityExpanded
             goodMeds = 1.05f;
             excMeds = 1.1f;
             masterMeds = 1.15f;
-            legMeds = 1.3f;
+            legMeds = 1.25f;
 
             //Turret Accuracy
             /*turretQuality = false;

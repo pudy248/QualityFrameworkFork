@@ -98,32 +98,32 @@ namespace QualityExpanded
             }
         }
 
-        [HarmonyPatch(typeof(ListerBuildingsRepairable), "Notify_BuildingTookDamage")]
-        [HarmonyPostfix]
+//        [HarmonyPatch(typeof(ListerBuildingsRepairable), "Notify_BuildingTookDamage")]
+//        [HarmonyPostfix]
         public static void BuildingQualityLoss_Damaged(Building b)
         {
-            if (Settings_QE.bldgDeteriorates) CheckQualityLoss(b);
+            CheckQualityLoss(b);
         }
 
-        [HarmonyPatch(typeof(ListerBuildingsRepairable), "Notify_BuildingSpawned")]
-        [HarmonyPostfix]
+        //[HarmonyPatch(typeof(ListerBuildingsRepairable), "Notify_BuildingSpawned")]
+        //[HarmonyPostfix]
         public static void BuildingQualityLoss_Spawned(Building b)
         {
-            if (Settings_QE.bldgDeteriorates) CheckQualityLoss(b);
+            CheckQualityLoss(b);
         }
 
-        [HarmonyPatch(typeof(Pawn_ApparelTracker), "TakeWearoutDamageForDay")]
-        [HarmonyPostfix]
+        //[HarmonyPatch(typeof(Pawn_ApparelTracker), "TakeWearoutDamageForDay")]
+        //[HarmonyPostfix]
         public static void ApparelQualityLoss_Daily(Thing ap)
         {
-            if (Settings_QE.appDeteriorates) CheckQualityLoss(ap);
+            CheckQualityLoss(ap);
         }
 
-        [HarmonyPatch(typeof(ArmorUtility), "ApplyArmor")]
-        [HarmonyPostfix]
+        //[HarmonyPatch(typeof(ArmorUtility), "ApplyArmor")]
+        //[HarmonyPostfix]
         public static void ArmorQualityLoss_Absorbed(Thing armorThing)
         {
-            if (Settings_QE.appDeteriorates && armorThing != null) CheckQualityLoss(armorThing);
+            if (armorThing != null) CheckQualityLoss(armorThing);
         }
          
         public static void CheckQualityLoss(Thing thing)
