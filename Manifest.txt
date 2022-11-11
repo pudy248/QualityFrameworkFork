@@ -1,3 +1,9 @@
+[11/8/2022]
+pudy248 - Quality now configurably affects trap damage.
+
+[11/6/2022]
+pudy248 - Updated for 1.4 and fixed incompatibility with Duck's Insane Skills.
+
 [11/4/2021]
 Adjusted default coodlown factors.
 Cooldown now applies to turrets.

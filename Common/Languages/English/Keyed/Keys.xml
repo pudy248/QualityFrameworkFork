@@ -43,6 +43,7 @@
 	
 	<QExpanded.RangedCD>Quality affects ranged cooldown:</QExpanded.RangedCD>
 	<QExpanded.MeleeCD>Quality affects melee cooldown:</QExpanded.MeleeCD>
+	<QExpanded.TrapDamage>Quality affects trap melee damage:</QExpanded.TrapDamage>
 	<QExpanded.MedPotency>Quality affects medical potency:</QExpanded.MedPotency>
 	
 	<QExpanded.Awful>Awful</QExpanded.Awful>

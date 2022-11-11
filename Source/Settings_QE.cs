@@ -94,6 +94,16 @@ namespace QualityExpanded
         public static float masterMelee = .925f;
         public static float legMelee = .9f;
 
+        //Trap Damage
+        public static bool trapQuality = true;
+        public static float awfulTrap = .9f;
+        public static float poorTrap = .9f;
+        public static float normalTrap = 1f;
+        public static float goodTrap = 1.1f;
+        public static float excTrap = 1.2f;
+        public static float masterTrap = 1.35f;
+        public static float legTrap = 1.5f;
+
         //Medical Potency
         public static bool medQuality = false;
         public static float awfulMeds = .9f;
@@ -183,6 +193,16 @@ namespace QualityExpanded
             Scribe_Values.Look<float>(ref masterRanged, "masterRanged", .9f);
             Scribe_Values.Look<float>(ref legRanged, "legRanged", .8f);
 
+            //Trap Damage
+            Scribe_Values.Look<bool>(ref trapQuality, "trapQuality", true);
+            Scribe_Values.Look<float>(ref awfulTrap, "awfulTrap", .8f);
+            Scribe_Values.Look<float>(ref poorTrap, "poorTrap", .9f);
+            Scribe_Values.Look<float>(ref normalTrap, "normalTrap", 1f);
+            Scribe_Values.Look<float>(ref goodTrap, "goodTrap", 1.1f);
+            Scribe_Values.Look<float>(ref excTrap, "excTrap", 1.2f);
+            Scribe_Values.Look<float>(ref masterTrap, "masterTrap", 1.35f);
+            Scribe_Values.Look<float>(ref legTrap, "legTrap", 1.5f);
+
             //Melee Cooldown
             Scribe_Values.Look<bool>(ref meleeQuality, "meleeQuality", false);
             Scribe_Values.Look<float>(ref awfulMelee, "awfulMelee", 1.1f);
@@ -202,16 +222,6 @@ namespace QualityExpanded
             Scribe_Values.Look<float>(ref excMeds, "excMeds", 1.1f);
             Scribe_Values.Look<float>(ref masterMeds, "masterMeds", 1.15f);
             Scribe_Values.Look<float>(ref legMeds, "legMeds", 1.25f);
-
-            //Turret Accuracy
-            /*Scribe_Values.Look<bool>(ref turretQuality, "turretQuality", false);
-            Scribe_Values.Look<float>(ref awfulTurret, "awfulTurret", .8f);
-            Scribe_Values.Look<float>(ref poorTurret, "poorTurret", .9f);
-            Scribe_Values.Look<float>(ref normalTurret, "normalTurret", 1f);
-            Scribe_Values.Look<float>(ref goodTurret, "goodTurret", 1.1f);
-            Scribe_Values.Look<float>(ref excTurret, "excTurret", 1.2f);
-            Scribe_Values.Look<float>(ref masterTurret, "masterTurret", 1.35f);
-            Scribe_Values.Look<float>(ref legTurret, "legTurret", 1.5f);*/
         }
 
         public static void ResetDefaults()
@@ -292,6 +302,16 @@ namespace QualityExpanded
             masterRanged = .9f;
             legRanged = .8f;
 
+            //Trap Damage
+            trapQuality = true;
+            awfulTrap = .9f;
+            poorTrap = .9f;
+            normalTrap = 1f;
+            goodTrap = 1.1f;
+            excTrap = 1.2f;
+            masterTrap = 1.35f;
+            legTrap = 1.5f;
+
             //Melee Cooldown
             meleeQuality = false;
             awfulMelee = 1.1f;
@@ -311,16 +331,6 @@ namespace QualityExpanded
             excMeds = 1.1f;
             masterMeds = 1.15f;
             legMeds = 1.25f;
-
-            //Turret Accuracy
-            /*turretQuality = false;
-            awfulTurret = .8f;
-            poorTurret = .9f;
-            normalTurret = 1f;
-            goodTurret = 1.1f;
-            excTurret = 1.2f;
-            masterTurret = 1.35f;
-            legTurret = 1.5f;*/
         }
     }
 }

@@ -185,6 +185,43 @@
 			</li>
 			<li Class="XmlExtensions.OptionalPatchExternal">
 				<ModClass>QualityExpanded.Mod_QE</ModClass>
+				<field>trapQuality</field>
+				<caseTrue>
+					<Operation Class="XmlExtensions.UseSettingsExternal">
+						<ModClass>QualityExpanded.Mod_QE</ModClass>
+						<fields>
+							<li>awfulTrap</li>
+							<li>poorTrap</li>
+							<li>normalTrap</li>
+							<li>goodTrap</li>
+							<li>excTrap</li>
+							<li>masterTrap</li>
+							<li>legTrap</li>
+						</fields>
+						<apply>
+						  <Operation Class="XmlExtensions.PatchOperationSafeAddOrReplace">
+								<xpath>Defs/StatDef[defName="TrapMeleeDamage"]</xpath>
+								<safetyDepth>1</safetyDepth>
+								<value>
+									<parts>
+										<li Class="StatPart_Quality">
+											<factorAwful>{awfulTrap}</factorAwful>
+											<factorPoor>{poorTrap}</factorPoor>
+											<factorNormal>{normalTrap}</factorNormal>
+											<factorGood>{goodTrap}</factorGood>
+											<factorExcellent>{excTrap}</factorExcellent>
+											<factorMasterwork>{masterTrap}</factorMasterwork>
+											<factorLegendary>{legTrap}</factorLegendary>
+										</li>
+									</parts>
+								</value>			
+						  </Operation>					
+						</apply>			
+					</Operation>	
+				</caseTrue>
+			</li>
+			<li Class="XmlExtensions.OptionalPatchExternal">
+				<ModClass>QualityExpanded.Mod_QE</ModClass>
 				<field>medQuality</field>
 				<caseTrue>
 					<Operation Class="XmlExtensions.UseSettingsExternal">
@@ -220,43 +257,6 @@
 					</Operation>	
 				</caseTrue>
 			</li>
-			<!--<li Class="XmlExtensions.OptionalPatchExternal">
-				<ModClass>QualityExpanded.Mod_QE</ModClass>
-				<field>turretQuality</field>
-				<caseTrue>
-					<Operation Class="XmlExtensions.UseSettingsExternal">
-						<ModClass>QualityExpanded.Mod_QE</ModClass>
-						<fields>
-							<li>awfulTurret</li>
-							<li>poorTurret</li>
-							<li>normalTurret</li>
-							<li>goodTurret</li>
-							<li>excTurret</li>
-							<li>masterTurret</li>
-							<li>legTurret</li>
-						</fields>
-						<apply>
-						  <Operation Class="XmlExtensions.PatchOperationSafeAddOrReplace">
-								<xpath>Defs/StatDef[defName="ShootingAccuracyTurret"]</xpath>
-								<safetyDepth>1</safetyDepth>
-								<value>
-									<parts>
-										<li Class="StatPart_Quality">
-											<factorAwful>{awfulTurret}</factorAwful>
-											<factorPoor>{poorTurret}</factorPoor>
-											<factorNormal>{normalTurret}</factorNormal>
-											<factorGood>{goodTurret}</factorGood>
-											<factorExcellent>{excTurret}</factorExcellent>
-											<factorMasterwork>{masterTurret}</factorMasterwork>
-											<factorLegendary>{legTurret}</factorLegendary>
-										</li>
-									</parts>
-								</value>			
-						  </Operation>					
-						</apply>			
-					</Operation>	
-				</caseTrue>
-			</li>-->
 		</operations>
 	</Operation>
 </Patch>

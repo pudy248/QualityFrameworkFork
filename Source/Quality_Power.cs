@@ -11,17 +11,18 @@ namespace QualityExpanded
     public class Quality_Power
     {
         static readonly FieldInfo fEfficiency = AccessTools.Field(typeof(CompProperties_Battery), nameof(CompProperties_Battery.efficiency));
+        static readonly FieldInfo fBasePowerConsumption = AccessTools.Field(typeof(CompProperties_Power), "basePowerConsumption");
         static readonly FieldInfo fParent = AccessTools.Field(typeof(CompPowerBattery), nameof(CompPowerBattery.parent));
         static readonly MethodInfo mQualityFactor = AccessTools.Method(typeof(Quality_Power), "PowerQualityFactor");
 
         public static void PowerOutput_QualPostfix(CompPowerTrader __instance)
         {
-            if (__instance.Props.basePowerConsumption < 0f)
+            if ((float)fBasePowerConsumption.GetValue(__instance.Props) < 0f)
             {
                 //Log.Message("Changing result from " + __instance.powerOutputInt + " to " + __instance.powerOutputInt * PowerOutQualityFactor(qc));
                 __instance.powerOutputInt = __instance.powerOutputInt * PowerQualityFactor(__instance.parent);
             }
-            if (__instance.Props.basePowerConsumption > 0f)
+            if ((float)fBasePowerConsumption.GetValue(__instance.Props) > 0f)
             {
                 __instance.powerOutputInt = __instance.powerOutputInt / PowerQualityFactor(__instance.parent);
             }

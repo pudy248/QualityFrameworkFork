@@ -112,6 +112,16 @@ namespace QualityExpanded
                         if (part.GetType() == typeof(StatPart_Quality)) def.parts.RemoveAt(i);
                     }
             }
+            if (!Settings_QE.trapQuality)
+			{
+                def = DefDatabase<StatDef>.GetNamedSilentFail(StatDefOf.TrapMeleeDamage.defName);
+                if (def?.parts != null)
+                    for (int i = 0; i < def.parts.Count; i++)
+                    {
+                        part = def.parts[i];
+                        if (part.GetType() == typeof(StatPart_Quality)) def.parts.RemoveAt(i);
+                    }
+            }
             if (!Settings_QE.medQuality)
             {
                 def = DefDatabase<StatDef>.GetNamedSilentFail(StatDefOf.MedicalPotency.defName);

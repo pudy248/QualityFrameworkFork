@@ -185,34 +185,6 @@ namespace QualityExpanded
             string legPower = Settings_QE.legPower.ToString();
             Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), legendary, ref Settings_QE.legPower, ref legPower, .05f, .5f, .05f, 10f);
 
-            //Turret Accuracy
-            /*listing.CheckboxLabeled("QExpanded.TurretAcc".Translate(), ref Settings_QE.turretQuality);
-            if (ModLister.HasActiveModWithName("XML Extensions"))
-            {
-                string awfulTurret = Settings_QE.awfulTurret.ToString();
-                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), awful, ref Settings_QE.awfulTurret, ref awfulTurret, .05f, .5f, .05f, 10f);
-                string poorTurret = Settings_QE.poorTurret.ToString();
-                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), poor, ref Settings_QE.poorTurret, ref poorTurret, .05f, .5f, .05f, 10f);
-                string normTurret = Settings_QE.normalTurret.ToString();
-                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), normal, ref Settings_QE.normalTurret, ref normTurret, .05f, .5f, .05f, 10f);
-                string goodTurret = Settings_QE.goodTurret.ToString();
-                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), good, ref Settings_QE.goodTurret, ref goodTurret, .05f, .5f, .05f, 10f);
-                string excTurret = Settings_QE.excTurret.ToString();
-                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), excellent, ref Settings_QE.excTurret, ref excTurret, .05f, .5f, .05f, 10f);
-                string masterTurret = Settings_QE.masterTurret.ToString();
-                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), master, ref Settings_QE.masterTurret, ref masterTurret, .05f, .5f, .05f, 10f);
-                string legTurret = Settings_QE.legTurret.ToString();
-                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), legendary, ref Settings_QE.legTurret, ref legTurret, .05f, .5f, .05f, 10f);
-            }
-            else
-            {
-                listing.Gap(72f);
-                Text.Anchor = TextAnchor.MiddleCenter;
-                listing.Label("Requires XML Extensions");
-                Text.Anchor = TextAnchor.MiddleLeft;
-                listing.Gap(72f);
-            }
-            listing.GapLine(12f);*/
 
             listing.NewColumn();
             listing.Gap(8f);
@@ -311,6 +283,38 @@ namespace QualityExpanded
                 Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), master, ref Settings_QE.masterRanged, ref masterRanged, .05f, .5f, .05f, 10f);
                 string legRanged = Settings_QE.legRanged.ToString();
                 Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), legendary, ref Settings_QE.legRanged, ref legRanged, .05f, .5f, .05f, 10f);
+            }
+            else
+            {
+                listing.Gap(78f);
+                Text.Anchor = TextAnchor.MiddleCenter;
+                listing.Label("Requires XML Extensions");
+                Text.Anchor = TextAnchor.MiddleLeft;
+                listing.Gap(78f);
+            }
+            listing.GapLine(12f);
+            
+            //Trap Damage
+            Text.Anchor = TextAnchor.MiddleCenter;
+            listing.Label("QExpanded.AllRestart".Translate());
+            Text.Anchor = TextAnchor.MiddleLeft;
+            listing.CheckboxLabeled("QExpanded.TrapDamage".Translate(), ref Settings_QE.trapQuality);
+            if (ModLister.HasActiveModWithName("XML Extensions"))
+            {
+                string awfulTrap = Settings_QE.awfulTrap.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), awful, ref Settings_QE.awfulTrap, ref awfulTrap, .05f, .5f, .05f, 10f);
+                string poorTrap = Settings_QE.poorTrap.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), poor, ref Settings_QE.poorTrap, ref poorTrap, .05f, .5f, .05f, 10f);
+                string normTrap = Settings_QE.normalTrap.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), normal, ref Settings_QE.normalTrap, ref normTrap, .05f, .5f, .05f, 10f);
+                string goodTrap = Settings_QE.goodTrap.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), good, ref Settings_QE.goodTrap, ref goodTrap, .05f, .5f, .05f, 10f);
+                string excTrap = Settings_QE.excTrap.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), excellent, ref Settings_QE.excTrap, ref excTrap, .05f, .5f, .05f, 10f);
+                string masterTrap = Settings_QE.masterTrap.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), master, ref Settings_QE.masterTrap, ref masterTrap, .05f, .5f, .05f, 10f);
+                string legTrap = Settings_QE.legTrap.ToString();
+                Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), legendary, ref Settings_QE.legTrap, ref legTrap, .05f, .5f, .05f, 10f);
             }
             else
             {
