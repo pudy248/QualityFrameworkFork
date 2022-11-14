@@ -4,10 +4,27 @@
 		<mods><li>XML Extensions</li></mods>
 		<nomatch Class="PatchOperationSequence">
 			<operations>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/StatDef[defName="RangedWeapon_Cooldown" or defName="MeleeWeapon_CooldownMultiplier"]</xpath>
-					<value>
-						<parts>
+				<li Class="PatchOperationConditional">
+					<xpath>Defs/StatDef[defName="RangedWeapon_Cooldown" or defName="MeleeWeapon_CooldownMultiplier"]/parts</xpath>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>Defs/StatDef[defName="RangedWeapon_Cooldown" or defName="MeleeWeapon_CooldownMultiplier"]</xpath>
+						<value>
+							<parts>
+								<li Class="StatPart_Quality">
+									<factorAwful>.8</factorAwful>
+									<factorPoor>.9</factorPoor>
+									<factorNormal>1</factorNormal>
+									<factorGood>1.1</factorGood>
+									<factorExcellent>1.2</factorExcellent>
+									<factorMasterwork>1.35</factorMasterwork>
+									<factorLegendary>1.5</factorLegendary>
+								</li>
+							</parts>
+						</value>
+					</nomatch>
+					<match Class="PatchOperationAdd">
+						<xpath>Defs/StatDef[defName="RangedWeapon_Cooldown" or defName="MeleeWeapon_CooldownMultiplier"]/parts</xpath>
+						<value>
 							<li Class="StatPart_Quality">
 								<factorAwful>.8</factorAwful>
 								<factorPoor>.9</factorPoor>
@@ -17,41 +34,81 @@
 								<factorMasterwork>1.35</factorMasterwork>
 								<factorLegendary>1.5</factorLegendary>
 							</li>
-						</parts>
-					</value>
+						</value>
+					</match>
 				</li>
 				<li Class="PatchOperationFindMod">
 					<mods><li>Quality Framework</li></mods>
 					<match Class="PatchOperationSequence">
 						<operations>
-							<li Class="PatchOperationAdd">
+							<li Class="PatchOperationConditional">
 								<xpath>Defs/StatDef[defName="ResearchSpeedFactor"]/parts</xpath>
-								<value>
-									<li Class="StatPart_Quality">
-										<factorAwful>.8</factorAwful>
-										<factorPoor>.9</factorPoor>
-										<factorNormal>1</factorNormal>
-										<factorGood>1.1</factorGood>
-										<factorExcellent>1.2</factorExcellent>
-										<factorMasterwork>1.35</factorMasterwork>
-										<factorLegendary>1.5</factorLegendary>
-									</li>
-								</value>
+								<nomatch Class="PatchOperationAdd">
+									<xpath>Defs/StatDef[defName="ResearchSpeedFactor"]</xpath>
+									<value>
+										<parts>
+											<li Class="StatPart_Quality">
+												<factorAwful>.8</factorAwful>
+												<factorPoor>.9</factorPoor>
+												<factorNormal>1</factorNormal>
+												<factorGood>1.1</factorGood>
+												<factorExcellent>1.2</factorExcellent>
+												<factorMasterwork>1.35</factorMasterwork>
+												<factorLegendary>1.5</factorLegendary>
+											</li>
+										</parts>
+									</value>
+								</nomatch>
+								<match Class="PatchOperationAdd">
+									<xpath>Defs/StatDef[defName="ResearchSpeedFactor"]/parts</xpath>
+									<value>
+										<li Class="StatPart_Quality">
+											<factorAwful>.8</factorAwful>
+											<factorPoor>.9</factorPoor>
+											<factorNormal>1</factorNormal>
+											<factorGood>1.1</factorGood>
+											<factorExcellent>1.2</factorExcellent>
+											<factorMasterwork>1.35</factorMasterwork>
+											<factorLegendary>1.5</factorLegendary>
+										</li>
+									</value>
+								</match>
 							</li>
-							<li Class="PatchOperationAdd">
+							
+							<li Class="PatchOperationConditional">
 								<xpath>Defs/StatDef[defName="WorkTableWorkSpeedFactor"]/parts</xpath>
-								<value>
-									<li Class="StatPart_Quality">
-										<factorAwful>.8</factorAwful>
-										<factorPoor>.9</factorPoor>
-										<factorNormal>1</factorNormal>
-										<factorGood>1.1</factorGood>
-										<factorExcellent>1.2</factorExcellent>
-										<factorMasterwork>1.35</factorMasterwork>
-										<factorLegendary>1.5</factorLegendary>
-									</li>
-								</value>
-							</li>		
+								<nomatch Class="PatchOperationAdd">
+									<xpath>Defs/StatDef[defName="WorkTableWorkSpeedFactor"]</xpath>
+									<value>
+										<parts>
+											<li Class="StatPart_Quality">
+												<factorAwful>.8</factorAwful>
+												<factorPoor>.9</factorPoor>
+												<factorNormal>1</factorNormal>
+												<factorGood>1.1</factorGood>
+												<factorExcellent>1.2</factorExcellent>
+												<factorMasterwork>1.35</factorMasterwork>
+												<factorLegendary>1.5</factorLegendary>
+											</li>
+										</parts>
+									</value>
+								</nomatch>
+								<match Class="PatchOperationAdd">
+									<xpath>Defs/StatDef[defName="WorkTableWorkSpeedFactor"]/parts</xpath>
+									<value>
+										<li Class="StatPart_Quality">
+											<factorAwful>.8</factorAwful>
+											<factorPoor>.9</factorPoor>
+											<factorNormal>1</factorNormal>
+											<factorGood>1.1</factorGood>
+											<factorExcellent>1.2</factorExcellent>
+											<factorMasterwork>1.35</factorMasterwork>
+											<factorLegendary>1.5</factorLegendary>
+										</li>
+									</value>
+								</match>
+							</li>
+
 							<li Class="PatchOperationFindMod">
 								<mods><li>Quality Doors</li></mods>
 								<nomatch Class="PatchOperationAdd">
@@ -71,10 +128,28 @@
 									</value>						
 								</nomatch>			
 							</li>
-							<li Class="PatchOperationAdd">
-								<xpath>Defs/StatDef[defName="MedicalPotency"]</xpath>
-								<value>
-									<parts>
+							
+							<li Class="PatchOperationConditional">
+								<xpath>Defs/StatDef[defName="MedicalPotency"]/parts</xpath>
+								<nomatch Class="PatchOperationAdd">
+									<xpath>Defs/StatDef[defName="MedicalPotency"]</xpath>
+									<value>
+										<parts>
+											<li Class="StatPart_Quality">
+												<factorAwful>.9</factorAwful>
+												<factorPoor>.95</factorPoor>
+												<factorNormal>1</factorNormal>
+												<factorGood>1.05</factorGood>
+												<factorExcellent>1.1</factorExcellent>
+												<factorMasterwork>1.15</factorMasterwork>
+												<factorLegendary>1.3</factorLegendary>
+											</li>
+										</parts>
+									</value>
+								</nomatch>
+								<match Class="PatchOperationAdd">
+									<xpath>Defs/StatDef[defName="MedicalPotency"]/parts</xpath>
+									<value>
 										<li Class="StatPart_Quality">
 											<factorAwful>.9</factorAwful>
 											<factorPoor>.95</factorPoor>
@@ -84,13 +159,31 @@
 											<factorMasterwork>1.15</factorMasterwork>
 											<factorLegendary>1.3</factorLegendary>
 										</li>
-									</parts>
-								</value>
+									</value>
+								</match>
 							</li>
-							<li Class="PatchOperationAdd">
-								<xpath>Defs/StatDef[defName="TrapMeleeDamage"]</xpath>
-								<value>
-									<parts>
+
+							<li Class="PatchOperationConditional">
+								<xpath>Defs/StatDef[defName="TrapMeleeDamage"]/parts</xpath>
+								<nomatch Class="PatchOperationAdd">
+									<xpath>Defs/StatDef[defName="TrapMeleeDamage"]</xpath>
+									<value>
+										<parts>
+											<li Class="StatPart_Quality">
+												<factorAwful>.8</factorAwful>
+												<factorPoor>.9</factorPoor>
+												<factorNormal>1</factorNormal>
+												<factorGood>1.1</factorGood>
+												<factorExcellent>1.2</factorExcellent>
+												<factorMasterwork>1.35</factorMasterwork>
+												<factorLegendary>1.5</factorLegendary>
+											</li>
+										</parts>
+									</value>
+								</nomatch>
+								<match Class="PatchOperationAdd">
+									<xpath>Defs/StatDef[defName="TrapMeleeDamage"]/parts</xpath>
+									<value>
 										<li Class="StatPart_Quality">
 											<factorAwful>.8</factorAwful>
 											<factorPoor>.9</factorPoor>
@@ -100,8 +193,8 @@
 											<factorMasterwork>1.35</factorMasterwork>
 											<factorLegendary>1.5</factorLegendary>
 										</li>
-									</parts>
-								</value>
+									</value>
+								</match>
 							</li>
 						</operations>
 					</match>
