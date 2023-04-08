@@ -360,7 +360,39 @@ namespace QualityExpanded
             }
             listing.GapLine(12f);
 
-            listing.NewColumn();
+			//Nutrition
+			Text.Anchor = TextAnchor.MiddleCenter;
+			listing.Label("QExpanded.AllRestart".Translate());
+			Text.Anchor = TextAnchor.MiddleLeft;
+			listing.CheckboxLabeled("QExpanded.Nutrition".Translate(), ref Settings_QE.trapQuality);
+			if (ModLister.HasActiveModWithName("XML Extensions"))
+			{
+				string awfulFood = Settings_QE.awfulFood.ToString();
+				Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), awful, ref Settings_QE.awfulFood, ref awfulFood, .05f, .5f, .05f, 10f);
+				string poorFood = Settings_QE.poorFood.ToString();
+				Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), poor, ref Settings_QE.poorFood, ref poorFood, .05f, .5f, .05f, 10f);
+				string normFood = Settings_QE.normalFood.ToString();
+				Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), normal, ref Settings_QE.normalFood, ref normFood, .05f, .5f, .05f, 10f);
+				string goodFood = Settings_QE.goodFood.ToString();
+				Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), good, ref Settings_QE.goodFood, ref goodFood, .05f, .5f, .05f, 10f);
+				string excFood = Settings_QE.excFood.ToString();
+				Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), excellent, ref Settings_QE.excFood, ref excFood, .05f, .5f, .05f, 10f);
+				string masterFood = Settings_QE.masterFood.ToString();
+				Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), master, ref Settings_QE.masterFood, ref masterFood, .05f, .5f, .05f, 10f);
+				string legFood = Settings_QE.legFood.ToString();
+				Settings_Extension.LabeledFloatEntry(listing.GetRect(24f), legendary, ref Settings_QE.legFood, ref legFood, .05f, .5f, .05f, 10f);
+			}
+			else
+			{
+				listing.Gap(78f);
+				Text.Anchor = TextAnchor.MiddleCenter;
+				listing.Label("Requires XML Extensions");
+				Text.Anchor = TextAnchor.MiddleLeft;
+				listing.Gap(78f);
+			}
+			listing.GapLine(12f);
+
+			listing.NewColumn();
             listing.Gap(8f);
             //Medical Potency
             Text.Anchor = TextAnchor.MiddleCenter;

@@ -222,6 +222,43 @@
 			</li>
 			<li Class="XmlExtensions.OptionalPatchExternal">
 				<ModClass>QualityExpanded.Mod_QE</ModClass>
+				<field>foodQuality</field>
+				<caseTrue>
+					<Operation Class="XmlExtensions.UseSettingsExternal">
+						<ModClass>QualityExpanded.Mod_QE</ModClass>
+						<fields>
+							<li>awfulFood</li>
+							<li>poorFood</li>
+							<li>normalFood</li>
+							<li>goodFood</li>
+							<li>excFood</li>
+							<li>masterFood</li>
+							<li>legFood</li>
+						</fields>
+						<apply>
+						  <Operation Class="XmlExtensions.PatchOperationSafeAddOrReplace">
+								<xpath>Defs/StatDef[defName="Nutrition"]</xpath>
+								<safetyDepth>1</safetyDepth>
+								<value>
+									<parts>
+										<li Class="StatPart_Quality">
+											<factorAwful>{awfulFood}</factorAwful>
+											<factorPoor>{poorFood}</factorPoor>
+											<factorNormal>{normalFood}</factorNormal>
+											<factorGood>{goodFood}</factorGood>
+											<factorExcellent>{excFood}</factorExcellent>
+											<factorMasterwork>{masterFood}</factorMasterwork>
+											<factorLegendary>{legFood}</factorLegendary>
+										</li>
+									</parts>
+								</value>			
+						  </Operation>					
+						</apply>			
+					</Operation>	
+				</caseTrue>
+			</li>
+			<li Class="XmlExtensions.OptionalPatchExternal">
+				<ModClass>QualityExpanded.Mod_QE</ModClass>
 				<field>medQuality</field>
 				<caseTrue>
 					<Operation Class="XmlExtensions.UseSettingsExternal">

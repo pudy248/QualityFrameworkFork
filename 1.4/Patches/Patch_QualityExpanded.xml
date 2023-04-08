@@ -196,6 +196,40 @@
 									</value>
 								</match>
 							</li>
+							
+							<li Class="PatchOperationConditional">
+								<xpath>Defs/StatDef[defName="Nutrition"]/parts</xpath>
+								<nomatch Class="PatchOperationAdd">
+									<xpath>Defs/StatDef[defName="Nutrition"]</xpath>
+									<value>
+										<parts>
+											<li Class="StatPart_Quality">
+												<factorAwful>.8</factorAwful>
+												<factorPoor>.9</factorPoor>
+												<factorNormal>1</factorNormal>
+												<factorGood>1.1</factorGood>
+												<factorExcellent>1.2</factorExcellent>
+												<factorMasterwork>1.35</factorMasterwork>
+												<factorLegendary>1.5</factorLegendary>
+											</li>
+										</parts>
+									</value>
+								</nomatch>
+								<match Class="PatchOperationAdd">
+									<xpath>Defs/StatDef[defName="Nutrition"]/parts</xpath>
+									<value>
+										<li Class="StatPart_Quality">
+											<factorAwful>.8</factorAwful>
+											<factorPoor>.9</factorPoor>
+											<factorNormal>1</factorNormal>
+											<factorGood>1.1</factorGood>
+											<factorExcellent>1.2</factorExcellent>
+											<factorMasterwork>1.35</factorMasterwork>
+											<factorLegendary>1.5</factorLegendary>
+										</li>
+									</value>
+								</match>
+							</li>
 						</operations>
 					</match>
 				</li>

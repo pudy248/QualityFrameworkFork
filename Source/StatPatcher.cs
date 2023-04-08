@@ -121,8 +121,18 @@ namespace QualityExpanded
                         part = def.parts[i];
                         if (part.GetType() == typeof(StatPart_Quality)) def.parts.RemoveAt(i);
                     }
-            }
-            if (!Settings_QE.medQuality)
+			}
+			if (!Settings_QE.foodQuality)
+			{
+				def = DefDatabase<StatDef>.GetNamedSilentFail(StatDefOf.Nutrition.defName);
+				if (def?.parts != null)
+					for (int i = 0; i < def.parts.Count; i++)
+					{
+						part = def.parts[i];
+						if (part.GetType() == typeof(StatPart_Quality)) def.parts.RemoveAt(i);
+					}
+			}
+			if (!Settings_QE.medQuality)
             {
                 def = DefDatabase<StatDef>.GetNamedSilentFail(StatDefOf.MedicalPotency.defName);
                 if (def?.parts != null)

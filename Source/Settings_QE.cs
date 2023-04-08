@@ -104,8 +104,18 @@ namespace QualityExpanded
         public static float masterTrap = 1.35f;
         public static float legTrap = 1.5f;
 
-        //Medical Potency
-        public static bool medQuality = false;
+		//Nutrition
+		public static bool foodQuality = true;
+		public static float awfulFood = .9f;
+		public static float poorFood = .9f;
+		public static float normalFood = 1f;
+		public static float goodFood = 1.1f;
+		public static float excFood = 1.2f;
+		public static float masterFood = 1.35f;
+		public static float legFood = 1.5f;
+
+		//Medical Potency
+		public static bool medQuality = false;
         public static float awfulMeds = .9f;
         public static float poorMeds = .95f;
         public static float normalMeds = 1f;
@@ -203,8 +213,18 @@ namespace QualityExpanded
             Scribe_Values.Look<float>(ref masterTrap, "masterTrap", 1.35f);
             Scribe_Values.Look<float>(ref legTrap, "legTrap", 1.5f);
 
-            //Melee Cooldown
-            Scribe_Values.Look<bool>(ref meleeQuality, "meleeQuality", false);
+			//Nutrition
+			Scribe_Values.Look<bool>(ref trapQuality, "foodQuality", true);
+			Scribe_Values.Look<float>(ref awfulFood, "awfulFood", .8f);
+			Scribe_Values.Look<float>(ref poorFood, "poorFood", .9f);
+			Scribe_Values.Look<float>(ref normalFood, "normalFood", 1f);
+			Scribe_Values.Look<float>(ref goodFood, "goodFood", 1.1f);
+			Scribe_Values.Look<float>(ref excFood, "excFood", 1.2f);
+			Scribe_Values.Look<float>(ref masterFood, "masterFood", 1.35f);
+			Scribe_Values.Look<float>(ref legFood, "legFood", 1.5f);
+
+			//Melee Cooldown
+			Scribe_Values.Look<bool>(ref meleeQuality, "meleeQuality", false);
             Scribe_Values.Look<float>(ref awfulMelee, "awfulMelee", 1.1f);
             Scribe_Values.Look<float>(ref poorMelee, "poorMelee", 1.03f);
             Scribe_Values.Look<float>(ref normalMelee, "normalMelee", 1f);
@@ -312,8 +332,18 @@ namespace QualityExpanded
             masterTrap = 1.35f;
             legTrap = 1.5f;
 
-            //Melee Cooldown
-            meleeQuality = false;
+			//Nutrition
+			foodQuality = true;
+			awfulFood = .9f;
+			poorFood = .9f;
+			normalFood = 1f;
+			goodFood = 1.1f;
+			excFood = 1.2f;
+			masterFood = 1.35f;
+			legFood = 1.5f;
+
+			//Melee Cooldown
+			meleeQuality = false;
             awfulMelee = 1.1f;
             poorMelee = 1.03f;
             normalMelee = 1f;
